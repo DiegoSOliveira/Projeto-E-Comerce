@@ -26,9 +26,6 @@ namespace EC.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(11);
 
-            HasMany(f => f.EnderecoList)
-                .WithRequired()
-                .HasForeignKey(f => f.EnderecoId);
         }
     }
 }

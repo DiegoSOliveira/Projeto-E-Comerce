@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Clientes\Cliente.cs" />
@@ -41,6 +40,7 @@
     <Compile Include="Entities\Produtos\Categoria.cs" />
     <Compile Include="Entities\Produtos\Produto.cs" />
     <Compile Include="Entities\Vendas\Venda.cs" />
+    <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Interfaces\Repository\ICategoriaRepository.cs" />
     <Compile Include="Interfaces\Repository\ICidadeRepository.cs" />
     <Compile Include="Interfaces\Repository\IClienteRepository.cs" />
@@ -57,11 +57,24 @@
     <Compile Include="Interfaces\Services\IProdutoService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\IVendaService.cs" />
+    <Compile Include="Interfaces\Specification\ISpecification.cs" />
+    <Compile Include="Interfaces\Validation\IFiscal.cs" />
+    <Compile Include="Interfaces\Validation\IRegra.cs" />
+    <Compile Include="Interfaces\Validation\ISelfValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoriaService.cs" />
     <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Services\ProdutoService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Specification\Clientes\ClientePossuiCpfValido.cs" />
+    <Compile Include="Specification\Clientes\ClientePossuiEnderecoCadastrado.cs" />
+    <Compile Include="Specification\Clientes\ClientePossuiStatusAtivo.cs" />
+    <Compile Include="Validation\Base\FiscalBase.cs" />
+    <Compile Include="Validation\Clientes\ClienteEstaAptoParaCadastroNoSistema.cs" />
+    <Compile Include="Validation\Documentos\CPFValidation.cs" />
+    <Compile Include="Validation\Regra.cs" />
+    <Compile Include="ValuesObjects\ValidationError.cs" />
+    <Compile Include="ValuesObjects\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

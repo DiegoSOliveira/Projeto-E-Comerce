@@ -35,6 +35,10 @@ namespace EC.Infra.Data.EntityConfig
             HasRequired(e => e.Cidade)
                 .WithMany()
                 .HasForeignKey(e => e.CidadeId);
+
+            HasRequired(e => e.Cliente)
+                .WithMany()
+                .HasForeignKey(c => c.ClienteId);
         }
     }
 }

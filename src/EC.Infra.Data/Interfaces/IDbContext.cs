@@ -6,7 +6,7 @@ namespace EC.Infra.Data.Interfaces
     public interface IDbContext
     {
         IDbSet<T> Set<T>() where T : class;
-        DbEntityEntry<T> Entry<T>(T Entity) where T : class;
+        DbEntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();
         void Dispose();
     }

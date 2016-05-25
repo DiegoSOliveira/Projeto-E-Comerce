@@ -14,7 +14,7 @@ namespace EC.Infra.Data.Context
 {
     public class DataContext : BaseDbContext
     {
-        public DataContext(string EComerceContext) : base(EComerceContext)
+        public DataContext() : base("EComerceContext")
         {
 
         }
