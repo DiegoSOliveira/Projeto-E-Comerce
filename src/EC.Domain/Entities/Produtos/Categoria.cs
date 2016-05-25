@@ -7,11 +7,11 @@ namespace EC.Domain.Entities.Produtos
     {
         public Categoria()
         {
-            IdCategoria = Guid.NewGuid();
+            CategoriaId = Guid.NewGuid();
             Produtos = new List<Produto>();
         }
 
-        public Guid IdCategoria { get; set; }
+        public Guid CategoriaId { get; set; }
         public string Nome { get; set; }
         public ICollection<Produto> Produtos { get; set; }
     }

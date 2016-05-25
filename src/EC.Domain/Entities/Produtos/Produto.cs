@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EC.Domain.Entities.Vendas;
 
 namespace EC.Domain.Entities.Produtos
 {
@@ -16,7 +17,6 @@ namespace EC.Domain.Entities.Produtos
         public decimal Valor { get; set; }
         public bool Disponivel { get; set; }
         public ICollection<Categoria> Categorias { get; set; }
-        //public Guid FornecedorId { get; set; }
-        //public virtual ICollection<Venda> VendaList { get; set; }
+        public virtual ICollection<Venda> VendaList { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EC.Domain.Entities.Geografia;
 
 namespace EC.Domain.Entities.Clientes
 {
@@ -8,7 +9,7 @@ namespace EC.Domain.Entities.Clientes
         public Cliente()
         {
             ClienteId = Guid.NewGuid();
-            //EnderecoList = new List<Endereco>();
+            EnderecoList = new List<Endereco>();
         }
 
         public Guid ClienteId { get; set; }
@@ -19,6 +20,6 @@ namespace EC.Domain.Entities.Clientes
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
         //public virtual ICollection<Venda> ProdutosComprados { get; set; }
-        //public virtual ICollection<Endereco> EnderecoList { get; set; }
+        public virtual ICollection<Endereco> EnderecoList { get; set; }
     }
 }
