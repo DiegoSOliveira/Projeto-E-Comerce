@@ -68,6 +68,7 @@
     <Compile Include="EnderecoAppService.cs" />
     <Compile Include="EstadoAppService.cs" />
     <Compile Include="Interfaces\IAppServiceBase.cs" />
+    <Compile Include="Interfaces\ICategoriaAppService.cs" />
     <Compile Include="Interfaces\ICidadeAppService.cs" />
     <Compile Include="Interfaces\IClienteAppService.cs" />
     <Compile Include="Interfaces\IEnderecoAppService.cs" />

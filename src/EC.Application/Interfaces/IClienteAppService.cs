@@ -7,12 +7,12 @@ namespace EC.Application.Interfaces
 {
     public interface IClienteAppService : IDisposable
     {
-        ValidationAppResult Add(ClienteEnderecoViewModel clienteViewModel);
+        ValidationAppResult Add(ClienteViewModel clienteViewModel);
         ClienteViewModel GetById(Guid id);
         IEnumerable<ClienteViewModel> GetAll();
         void Update(ClienteViewModel clienteViewModel);
         void Remove(ClienteViewModel clienteViewModel);
-        int ObterTotalRegistros(string pesquisa);
-        IEnumerable<ClienteViewModel> ObterClientesGrid(int page, string pesquisa);
+        //int ObterTotalRegistros(string pesquisa);
+        //IEnumerable<ClienteViewModel> ObterClientesGrid(int page, string pesquisa);
     }
 }

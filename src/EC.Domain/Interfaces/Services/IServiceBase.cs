@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace EC.Domain.Interfaces.Services
 {
@@ -10,5 +11,6 @@ namespace EC.Domain.Interfaces.Services
         IEnumerable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(TEntity obj);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
     }
 }

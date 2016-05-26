@@ -17,15 +17,15 @@ namespace EC.Domain.Services
             _clienteRepository = clienteRepository;
         }
 
-        public Cliente ObterPorCPF(string cpf)
-        {
-            return _clienteRepository.ObterPorCPF(cpf);
-        }
+        //public Cliente ObterPorCPF(string cpf)
+        //{
+        //    return _clienteRepository.ObterPorCPF(cpf);
+        //}
 
-        public Cliente ObterPorEmail(string email)
-        {
-            return _clienteRepository.ObterPorEmail(email);
-        }
+        //public Cliente ObterPorEmail(string email)
+        //{
+        //    return _clienteRepository.ObterPorEmail(email);
+        //}
 
         public ValidationResult AdicionarCliente(Cliente cliente)
         {
@@ -42,14 +42,14 @@ namespace EC.Domain.Services
             return resultadoValidacao;
         }
 
-        public int ObterTotalRegistros(string pesquisa)
-        {
-            return _clienteRepository.ObterTotalRegistros(pesquisa);
-        }
+        //public int ObterTotalRegistros(string pesquisa)
+        //{
+        //    return _clienteRepository.ObterTotalRegistros(pesquisa);
+        //}
 
-        public IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa)
-        {
-            return _clienteRepository.ObterClientesGrid(page, pesquisa);
-        }
+        //public IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa)
+        //{
+        //    return _clienteRepository.ObterClientesGrid(page, pesquisa);
+        //}
     }
 } 

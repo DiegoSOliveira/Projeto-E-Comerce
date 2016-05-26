@@ -15,6 +15,8 @@ namespace EC.Infra.Data.EntityConfig
             Property(v => v.DataCadastro)
                 .IsRequired();
 
+
+
             HasMany(v => v.ProdutosList)
                 .WithMany(p => p.VendaList)
                 .Map(me =>

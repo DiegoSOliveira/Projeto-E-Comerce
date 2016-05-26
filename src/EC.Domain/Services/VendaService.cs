@@ -19,9 +19,5 @@ namespace EC.Domain.Services
             _vendaRepository = vendaRepository;
         }
 
-        public IEnumerable<Venda> GetAll()
-        {
-            return _vendaRepository.GetAll();
-        }
     }
 }

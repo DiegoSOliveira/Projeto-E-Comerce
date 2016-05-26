@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using EC.Domain.Interfaces.Repository;
 using EC.Domain.Interfaces.Services;
 
@@ -36,6 +37,11 @@ namespace EC.Domain.Services
         public void Remove(TEntity obj)
         {
             _repositoryBase.Remove(obj);
+        }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _repositoryBase.Find(predicate);
         }
 
         void IDisposable.Dispose()

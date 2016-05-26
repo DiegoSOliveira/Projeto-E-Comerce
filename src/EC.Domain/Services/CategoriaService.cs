@@ -13,9 +13,9 @@ namespace EC.Domain.Services
             _categoriaRepository = categoriaRepository;
         }
 
-        public IEnumerable<Produto> ObterCategoria(string nome)
-        {
-            return _categoriaRepository.ObterCategoria(nome);
-        }
+        //public IEnumerable<Produto> ObterCategoria(string nome)
+        //{
+        //    return _categoriaRepository.ObterCategoria(nome);
+        //}
     }
 }
