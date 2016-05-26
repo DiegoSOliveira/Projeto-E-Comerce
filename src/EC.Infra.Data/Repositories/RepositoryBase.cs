@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using EC.Domain.Interfaces.Repository;
 using EC.Infra.Data.Context;
 using EC.Infra.Data.Interfaces;
-using ServiceLocation;
+using Microsoft.Practices.ServiceLocation;
 
 namespace EC.Infra.Data.Repositories
 {

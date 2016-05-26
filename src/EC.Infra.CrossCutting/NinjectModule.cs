@@ -1,7 +1,12 @@
-﻿using EC.Application.Interfaces;
+﻿using EC.Application;
+using EC.Application.Interfaces;
 using EC.Domain.Interfaces.Repository;
 using EC.Domain.Interfaces.Services;
 using EC.Domain.Services;
+using EC.Infra.Data.Context;
+using EC.Infra.Data.Interfaces;
+using EC.Infra.Data.Repositories;
+using EC.Infra.Data.UoW;
 
 namespace EC.Infra.CrossCutting
 {
@@ -36,18 +41,19 @@ namespace EC.Infra.CrossCutting
             Bind<IVendaRepository>().To<VendaRepository>();
 
             // data repos read only
-            Bind<IClienteReadOnlyRepository>().To<ClienteReadOnlyRepository>();
-            Bind<IFornecedorReadOnlyRepository>().To<FornecedorReadOnlyRepository>();
-            Bind<IVendaReadOnlyRepository>().To<VendaReadOnlyRepository>();
-            Bind<IProdutoReadOnlyRepository>().To<ProdutoReadOnlyRepository>();
+            //Bind<IClienteReadOnlyRepository>().To<ClienteReadOnlyRepository>();
+            //Bind<IFornecedorReadOnlyRepository>().To<FornecedorReadOnlyRepository>();
+            //Bind<IVendaReadOnlyRepository>().To<VendaReadOnlyRepository>();
+            //Bind<IProdutoReadOnlyRepository>().To<ProdutoReadOnlyRepository>();
 
-            // ado repos only
-            Bind<IClienteADORepository>().To<ClienteADORepository>();
+            //// ado repos only
+            //Bind<IClienteADORepository>().To<ClienteADORepository>();
 
             // data configs
             Bind(typeof(IContextManager<>)).To(typeof(ContextManager<>));
-            Bind<IDbContext>().To<ProjetoModeloContext>();
+            Bind<IDbContext>().To<DataContext>();
             Bind(typeof(IUnitOfWork<>)).To(typeof(UnitOfWork<>));
 
         }
     }
+}

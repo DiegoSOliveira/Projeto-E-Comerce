@@ -31,7 +31,7 @@ namespace EC.Application
 
             cliente.EnderecoList.Add(endereco);
 
-            var result = _clienteService.Add(cliente);
+            var result = _clienteService.AdicionarCliente(cliente);
             if (!result.IsValid)
                 return DomainToApplicationResult(result);
 

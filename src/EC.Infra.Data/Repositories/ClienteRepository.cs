@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using EC.Domain.Entities.Clientes;
 using EC.Domain.Interfaces.Repository;
@@ -16,6 +17,16 @@ namespace EC.Infra.Data.Repositories
         public Cliente ObterPorEmail(string email)
         {
             return Find(c => c.Email == email).FirstOrDefault();
+        }
+
+        public int ObterTotalRegistros(string pesquisa)
+        {
+            return ObterTotalRegistros(pesquisa);
+        }
+
+        public IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa)
+        {
+            return ObterClientesGrid(page, pesquisa);
         }
 
         public override void Remove(Cliente cliente)

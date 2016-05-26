@@ -1,7 +1,6 @@
 ﻿using CommonServiceLocator.NinjectAdapter.Unofficial;
+using Microsoft.Practices.ServiceLocation;
 using Ninject;
-using Ninject.Modules;
-using ServiceLocation;
 
 namespace EC.Infra.CrossCutting
 {

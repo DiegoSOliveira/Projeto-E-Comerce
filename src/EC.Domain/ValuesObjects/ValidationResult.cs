@@ -1,5 +1,4 @@
-﻿using System.Activities.Validation;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace EC.Domain.ValuesObjects

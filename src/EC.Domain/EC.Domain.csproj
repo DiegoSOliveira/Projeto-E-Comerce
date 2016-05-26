@@ -63,9 +63,13 @@
     <Compile Include="Interfaces\Validation\ISelfValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoriaService.cs" />
+    <Compile Include="Services\CidadeService.cs" />
     <Compile Include="Services\ClienteService.cs" />
+    <Compile Include="Services\EnderecoService.cs" />
+    <Compile Include="Services\EstadoService.cs" />
     <Compile Include="Services\ProdutoService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\VendaService.cs" />
     <Compile Include="Specification\Clientes\ClientePossuiCpfValido.cs" />
     <Compile Include="Specification\Clientes\ClientePossuiEnderecoCadastrado.cs" />
     <Compile Include="Specification\Clientes\ClientePossuiStatusAtivo.cs" />

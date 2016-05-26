@@ -63,6 +63,7 @@
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="CategoriaAppService.cs" />
+    <Compile Include="CidadeAppService.cs" />
     <Compile Include="ClienteAppService.cs" />
     <Compile Include="EnderecoAppService.cs" />
     <Compile Include="EstadoAppService.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationAppError.cs" />
     <Compile Include="Validation\ValidationAppResult.cs" />
+    <Compile Include="VendaAppService.cs" />
     <Compile Include="ViewModel\CategoriaViewModel.cs" />
     <Compile Include="ViewModel\CidadeViewModel.cs" />
     <Compile Include="ViewModel\ClienteEnderecoViewModel.cs" />

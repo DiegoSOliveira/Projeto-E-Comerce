@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EC.Domain.Entities.Clientes;
 
 namespace EC.Domain.Interfaces.Repository
@@ -7,5 +8,7 @@ namespace EC.Domain.Interfaces.Repository
     {
         Cliente ObterPorCPF(string cpf);
         Cliente ObterPorEmail(string email);
+        int ObterTotalRegistros(string pesquisa);
+        IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa);
     }
 }
