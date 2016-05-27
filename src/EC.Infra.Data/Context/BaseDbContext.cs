@@ -9,7 +9,7 @@ namespace EC.Infra.Data.Context
         {
 
         }
-        public IDbSet<T> Set<T>() where T : class
+        public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();
         }

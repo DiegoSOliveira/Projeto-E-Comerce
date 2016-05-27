@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using EC.Application.Interfaces;
 using EC.Application.ViewModel;
-using EC.Infra.Data.Context;
 
 namespace EC.UI.Mvc.Controllers
 {

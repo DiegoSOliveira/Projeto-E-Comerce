@@ -2,7 +2,7 @@
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
 
-namespace EC.Infra.CrossCutting
+namespace EC.Infra.CrossCutting.IoC
 {
     public class Container
     {
@@ -13,7 +13,7 @@ namespace EC.Infra.CrossCutting
 
         public StandardKernel GetModule()
         {
-            return new StandardKernel(new NinjectModule());
+            return new StandardKernel(new NinjectModulo());
         }
     }
 }

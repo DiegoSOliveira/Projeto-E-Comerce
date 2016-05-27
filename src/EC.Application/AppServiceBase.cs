@@ -1,7 +1,6 @@
 ﻿using EC.Application.Interfaces;
 using EC.Application.Validation;
 using EC.Infra.Data.Interfaces;
-using System.Data.Entity;
 using EC.Domain.ValuesObjects;
 using Microsoft.Practices.ServiceLocation;
 
