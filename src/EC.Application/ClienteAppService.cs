@@ -22,14 +22,14 @@ namespace EC.Application
             _enderecoService = enderecoService;
         }
 
-        public ValidationAppResult Add(ClienteViewModel clienteViewModel)
+        public ValidationAppResult Add(ClienteEnderecoViewModel clienteEnderecoViewModel)
         {
-            var cliente = Mapper.Map<ClienteViewModel, Cliente>(clienteViewModel);
-            //var endereco = Mapper.Map<ClienteEnderecoViewModel, Endereco>(clienteEnderecoViewModel);
+            var cliente = Mapper.Map<ClienteEnderecoViewModel, Cliente>(clienteEnderecoViewModel);
+            var endereco = Mapper.Map<ClienteEnderecoViewModel, Endereco>(clienteEnderecoViewModel);
 
             BeginTransaction();
 
-            //cliente.EnderecoList.Add(endereco);
+            cliente.EnderecoList.Add(endereco);
 
             var result = _clienteService.AdicionarCliente(cliente);
             if (!result.IsValid)
@@ -76,17 +76,17 @@ namespace EC.Application
         }
 
 
-        //public IEnumerable<ClienteViewModel> ObterClientesGrid(int page, string pesquisa)
-        //{
-        //    return
-        //        Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteService.ObterClientesGrid(page,
-        //            pesquisa));
-        //}
+        public IEnumerable<ClienteViewModel> ObterClientesGrid(int page, string pesquisa)
+        {
+            return
+                Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteService.ObterClientesGrid(page,
+                    pesquisa));
+        }
 
 
-        //public int ObterTotalRegistros(string pesquisa)
-        //{
-        //    return _clienteService.ObterTotalRegistros(pesquisa);
-        //}
+        public int ObterTotalRegistros(string pesquisa)
+        {
+            return _clienteService.ObterTotalRegistros(pesquisa);
+        }
     }
 }

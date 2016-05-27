@@ -14,40 +14,40 @@ namespace EC.Domain.Services
         {
             _repositoryBase = repositoryBase;
         }
-        public void Add(TEntity obj)
+
+        public virtual void Add(TEntity obj)
         {
             _repositoryBase.Add(obj);
         }
 
-        public TEntity GetById(Guid id)
+        public virtual TEntity GetById(Guid id)
         {
             return _repositoryBase.GetById(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _repositoryBase.GetAll();
         }
 
-        public void Update(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
             _repositoryBase.Update(obj);
         }
 
-        public void Remove(TEntity obj)
+        public virtual void Remove(TEntity obj)
         {
             _repositoryBase.Remove(obj);
+        }
+
+        public virtual void Dispose()
+        {
+            _repositoryBase.Dispose();
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _repositoryBase.Find(predicate);
-        }
-
-        void IDisposable.Dispose()
-        {
-            _repositoryBase.Dispose();
-            GC.SuppressFinalize(this);
         }
     }
 }

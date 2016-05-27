@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EC.Domain.Entities.Clientes;
 using EC.Domain.Interfaces.Repository;
+using EC.Domain.Interfaces.Repository.ReadOnly;
 using EC.Domain.Interfaces.Services;
 using EC.Domain.ValuesObjects;
 
@@ -11,21 +12,13 @@ namespace EC.Domain.Services
     {
 
         private readonly IClienteRepository _clienteRepository;
+        private readonly IClienteReadOnlyRepository _clienteReadOnlyRepository;
 
-        public ClienteService(IClienteRepository clienteRepository) : base(clienteRepository)
+        public ClienteService(IClienteRepository clienteRepository, IClienteReadOnlyRepository clienteReadOnlyRepository) : base(clienteRepository)
         {
+            _clienteReadOnlyRepository = clienteReadOnlyRepository;
             _clienteRepository = clienteRepository;
         }
-
-        //public Cliente ObterPorCPF(string cpf)
-        //{
-        //    return _clienteRepository.ObterPorCPF(cpf);
-        //}
-
-        //public Cliente ObterPorEmail(string email)
-        //{
-        //    return _clienteRepository.ObterPorEmail(email);
-        //}
 
         public ValidationResult AdicionarCliente(Cliente cliente)
         {
@@ -41,15 +34,24 @@ namespace EC.Domain.Services
 
             return resultadoValidacao;
         }
+        public Cliente GetById(Guid id)
+        {
+            return _clienteReadOnlyRepository.GetById(id);
+        }
 
-        //public int ObterTotalRegistros(string pesquisa)
-        //{
-        //    return _clienteRepository.ObterTotalRegistros(pesquisa);
-        //}
+        public IEnumerable<Cliente> GetAll()
+        {
+            return _clienteReadOnlyRepository.GetAll();
+        }
 
-        //public IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa)
-        //{
-        //    return _clienteRepository.ObterClientesGrid(page, pesquisa);
-        //}
+        public int ObterTotalRegistros(string pesquisa)
+        {
+            return _clienteReadOnlyRepository.ObterTotalRegistros(pesquisa);
+        }
+
+        public IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa)
+        {
+            return _clienteReadOnlyRepository.ObterClientesGrid(page, pesquisa);
+        }
     }
 } 

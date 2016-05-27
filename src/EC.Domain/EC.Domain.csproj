@@ -49,6 +49,10 @@
     <Compile Include="Interfaces\Repository\IProdutoRepository.cs" />
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repository\IVendaRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\ICategoriaReadOnly.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IClienteReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IProdutoReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IVendaReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Services\ICategoriaService.cs" />
     <Compile Include="Interfaces\Services\ICidadeService.cs" />
     <Compile Include="Interfaces\Services\IClienteService.cs" />

@@ -15,6 +15,7 @@ namespace EC.Infra.Data.Repositories
         where TContext : IDbContext, new()
     {
         private readonly ContextManager<TContext> _contextManager = ServiceLocator.Current.GetInstance<IContextManager<TContext>>() as ContextManager<TContext>;
+
         protected IDbSet<TEntity> DbSet;
         protected readonly IDbContext Context;
 
@@ -29,9 +30,9 @@ namespace EC.Infra.Data.Repositories
             DbSet.Add(obj);
         }
 
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual TEntity GetById(Guid id)
         {
-            return DbSet.Where(predicate);
+            return DbSet.Find(id);
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -39,14 +40,9 @@ namespace EC.Infra.Data.Repositories
             return DbSet.ToList();
         }
 
-        public virtual TEntity GetById(Guid id)
+        public virtual IEnumerable<TEntity> GetAllReadOnly()
         {
-            return DbSet.Find(id);
-        }
-
-        public virtual void Remove(TEntity obj)
-        {
-            DbSet.Remove(obj);
+            return DbSet.AsNoTracking();
         }
 
         public virtual void Update(TEntity obj)
@@ -54,6 +50,16 @@ namespace EC.Infra.Data.Repositories
             var entry = Context.Entry(obj);
             DbSet.Attach(obj);
             entry.State = EntityState.Modified;
+        }
+
+        public virtual void Remove(TEntity obj)
+        {
+            DbSet.Remove(obj);
+        }
+
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbSet.Where(predicate);
         }
 
         public void Dispose()

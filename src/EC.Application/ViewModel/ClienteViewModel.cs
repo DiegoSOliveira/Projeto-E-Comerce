@@ -7,6 +7,10 @@ namespace EC.Application.ViewModel
 {
     public class ClienteViewModel
     {
+        public ClienteViewModel()
+        {
+            ClienteId = Guid.NewGuid();
+        }
         [Key]
         public Guid ClienteId { get; set; }
 

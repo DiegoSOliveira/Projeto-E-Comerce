@@ -1,11 +1,13 @@
 ﻿using EC.Application;
 using EC.Application.Interfaces;
 using EC.Domain.Interfaces.Repository;
+using EC.Domain.Interfaces.Repository.ReadOnly;
 using EC.Domain.Interfaces.Services;
 using EC.Domain.Services;
 using EC.Infra.Data.Context;
 using EC.Infra.Data.Interfaces;
 using EC.Infra.Data.Repositories;
+using EC.Infra.Data.Repositories.ReadOnly;
 using EC.Infra.Data.UoW;
 using Ninject.Modules;
 
@@ -46,10 +48,9 @@ namespace EC.Infra.CrossCutting.IoC
             Bind<ICategoriaRepository>().To<CategoriaRepository>();
 
             // data repos read only
-            //Bind<IClienteReadOnlyRepository>().To<ClienteReadOnlyRepository>();
-            //Bind<IFornecedorReadOnlyRepository>().To<FornecedorReadOnlyRepository>();
-            //Bind<IVendaReadOnlyRepository>().To<VendaReadOnlyRepository>();
-            //Bind<IProdutoReadOnlyRepository>().To<ProdutoReadOnlyRepository>();
+            Bind<IClienteReadOnlyRepository>().To<ClienteReadOnlyRepository>();
+            Bind<IVendaReadOnlyRepository>().To<VendaReadOnlyRepository>();
+            Bind<IProdutoReadOnlyRepository>().To<ProdutoReadOnlyRepository>();
 
             // ado repos only
             //Bind<IClienteADORepository>().To<ClienteADORepository>();

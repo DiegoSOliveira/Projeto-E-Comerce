@@ -9,16 +9,26 @@ namespace EC.UI.Mvc.Controllers
 {
     public class ClienteController : Controller
     {
-        private readonly IClienteAppService _clienteAppService;
+        private readonly IClienteAppService _clienteApp;
+        private readonly IEstadoAppService _estadoApp;
+        private readonly ICidadeAppService _cidadeApp;
+        private readonly IEnderecoAppService _enderecoApp;
 
-        public ClienteController(IClienteAppService clienteAppService)
+        public ClienteController(
+                   IClienteAppService clienteApp,
+                   IEstadoAppService estadoApp,
+                   ICidadeAppService cidadeApp,
+                   IEnderecoAppService enderecoApp)
         {
-            _clienteAppService = clienteAppService;
+            _clienteApp = clienteApp;
+            _estadoApp = estadoApp;
+            _cidadeApp = cidadeApp;
+            _enderecoApp = enderecoApp;
         }
         // GET: Cliente
         public ActionResult Index()
         {
-            return View(_clienteAppService.GetAll().ToList());
+            return View(_clienteApp.GetAll().ToList());
         }
 
         // GET: Cliente/Details/5
@@ -28,7 +38,7 @@ namespace EC.UI.Mvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClienteViewModel clienteViewModel = _clienteAppService.GetById(id);
+            ClienteViewModel clienteViewModel = _clienteApp.GetById(id);
             if (clienteViewModel == null)
             {
                 return HttpNotFound();
@@ -39,6 +49,8 @@ namespace EC.UI.Mvc.Controllers
         // GET: Cliente/Create
         public ActionResult Create()
         {
+            ViewBag.EstadoId = new SelectList(_estadoApp.GetAll().OrderBy(e => e.Nome), "EstadoId", "Nome");
+            ViewBag.CidadeId = new SelectList(_cidadeApp.GetAll().OrderBy(c => c.Nome), "CidadeId", "Nome");
             return View();
         }
 
@@ -47,14 +59,28 @@ namespace EC.UI.Mvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ClienteViewModel clienteViewModel)
+        public ActionResult Create(ClienteEnderecoViewModel clienteEnderecoViewModel)
         {
+            ViewBag.EstadoId = new SelectList(_estadoApp.GetAll().OrderBy(e => e.Nome), "EstadoId", "Nome", clienteEnderecoViewModel.EstadoId);
+            ViewBag.CidadeId = new SelectList(_cidadeApp.GetAll().OrderBy(c => c.Nome), "CidadeId", "Nome", clienteEnderecoViewModel.CidadeId);
+
             if (ModelState.IsValid)
             {
-                var result = _clienteAppService.Add(clienteViewModel);
+                var result = _clienteApp.Add(clienteEnderecoViewModel);
+
+                if (!result.IsValid)
+                {
+                    foreach (var validationAppError in result.Erros)
+                    {
+                        ModelState.AddModelError(string.Empty, validationAppError.Message);
+                    }
+                    return View(clienteEnderecoViewModel);
+                }
+
+                return RedirectToAction("Index");
             }
 
-            return View(clienteViewModel);
+            return View(clienteEnderecoViewModel);
         }
 
         // GET: Cliente/Edit/5
@@ -64,7 +90,7 @@ namespace EC.UI.Mvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClienteViewModel clienteViewModel = _clienteAppService.GetById(id);
+            ClienteViewModel clienteViewModel = _clienteApp.GetById(id);
             if (clienteViewModel == null)
             {
                 return HttpNotFound();
@@ -81,7 +107,7 @@ namespace EC.UI.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                _clienteAppService.Update(clienteViewModel);
+                _clienteApp.Update(clienteViewModel);
                 return RedirectToAction("Index");
             }
             return View(clienteViewModel);
@@ -94,8 +120,8 @@ namespace EC.UI.Mvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClienteViewModel clienteViewModel = _clienteAppService.GetById(id);
-            _clienteAppService.Remove(clienteViewModel);
+            ClienteViewModel clienteViewModel = _clienteApp.GetById(id);
+            _clienteApp.Remove(clienteViewModel);
             if (clienteViewModel == null)
             {
                 return HttpNotFound();
@@ -108,8 +134,8 @@ namespace EC.UI.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            ClienteViewModel clienteViewModel = _clienteAppService.GetById(id);
-            _clienteAppService.Remove(clienteViewModel);
+            ClienteViewModel clienteViewModel = _clienteApp.GetById(id);
+            _clienteApp.Remove(clienteViewModel);
             return RedirectToAction("Index");
         }
 
@@ -117,7 +143,7 @@ namespace EC.UI.Mvc.Controllers
         {
             if (disposing)
             {
-                _clienteAppService.Dispose();
+                _clienteApp.Dispose();
             }
             base.Dispose(disposing);
         }

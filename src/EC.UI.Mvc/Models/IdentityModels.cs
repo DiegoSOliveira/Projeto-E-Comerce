@@ -29,5 +29,13 @@ namespace EC.UI.Mvc.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<EC.Application.ViewModel.EnderecoViewModel> EnderecoViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<EC.Application.ViewModel.CidadeViewModel> CidadeViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<EC.Application.ViewModel.ClienteViewModel> ClienteViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<EC.Application.ViewModel.EstadoViewModel> EstadoViewModels { get; set; }
     }
 }

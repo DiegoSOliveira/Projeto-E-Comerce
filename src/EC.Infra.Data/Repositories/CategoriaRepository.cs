@@ -8,10 +8,6 @@ namespace EC.Infra.Data.Repositories
 {
     public class CategoriaRepository : RepositoryBase<Categoria, DataContext> , ICategoriaRepository
     {
-        //public IEnumerable<Produto> ObterCategoria(string nome)
-        //{
-        //    var categoria = Find(c => c.Nome == nome).FirstOrDefault();
-        //    return categoria.Produtos;
-        //}
+
     }
 }

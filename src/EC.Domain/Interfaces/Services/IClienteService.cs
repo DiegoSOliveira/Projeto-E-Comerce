@@ -11,7 +11,7 @@ namespace EC.Domain.Interfaces.Services
         //Cliente ObterPorCPF(string cpf);
         //Cliente ObterPorEmail(string email);
         ValidationResult AdicionarCliente(Cliente cliente);
-        //int ObterTotalRegistros(string pesquisa);
-        //IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa);
+        int ObterTotalRegistros(string pesquisa);
+        IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa);
     }
 }

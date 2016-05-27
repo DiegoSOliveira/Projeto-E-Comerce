@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -42,6 +46,7 @@
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Globalization" />
     <Reference Include="System.Web" />
@@ -74,6 +79,11 @@
     <Compile Include="Repositories\EnderecoRepository.cs" />
     <Compile Include="Repositories\EstadoRepository.cs" />
     <Compile Include="Repositories\ProdutoRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\CategoriaReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\ClienteReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\ProdutoReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\RepositoryBaseReadOnly.cs" />
+    <Compile Include="Repositories\ReadOnly\VendaReadOnlyRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\VendaRepository.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />

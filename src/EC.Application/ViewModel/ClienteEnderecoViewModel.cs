@@ -13,7 +13,6 @@ namespace EC.Application.ViewModel
         }
 
         // Cliente
-        [Key]
         public Guid ClienteId { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Nome")]
@@ -44,7 +43,6 @@ namespace EC.Application.ViewModel
         public bool Ativo { get; set; }
 
         // Endereço
-        [Key]
         public Guid EnderecoId { get; set; }
 
         [Required]

@@ -12,7 +12,7 @@ namespace EC.Domain.Validation.Clientes
             var clienteAtivo = new ClientePossuiStatusAtivo();
             var clienteCPFValido = new ClientePossuiCpfValido();
 
-            base.AdicionarRegra("ClienteEspecial", new Regra<Cliente>(clienteEndereco, "Cliente não possui endereço castrado"));
+            base.AdicionarRegra("clienteEndereco", new Regra<Cliente>(clienteEndereco, "Cliente não possui endereço castrado"));
             base.AdicionarRegra("ClienteAtivo", new Regra<Cliente>(clienteAtivo, "Cliente não está ativo no sistema"));
             base.AdicionarRegra("ClienteCPFValido", new Regra<Cliente>(clienteCPFValido, "Cliente informou um CPF Inválido"));
         }
