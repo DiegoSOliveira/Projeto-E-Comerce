@@ -22,8 +22,6 @@ namespace EC.Infra.CrossCutting.IoC
             Bind<IClienteAppService>().To<ClienteAppService>();
             Bind<IProdutoAppService>().To<ProdutoAppService>();
             Bind<IEnderecoAppService>().To<EnderecoAppService>();
-            Bind<IEstadoAppService>().To<EstadoAppService>();
-            Bind<ICidadeAppService>().To<CidadeAppService>();
             Bind<IVendaAppService>().To<VendaAppService>();
             Bind<ICategoriaAppService>().To<CategoriaAppService>();
 
@@ -32,8 +30,6 @@ namespace EC.Infra.CrossCutting.IoC
             Bind<IClienteService>().To<ClienteService>();
             Bind<IProdutoService>().To<ProdutoService>();
             Bind<IEnderecoService>().To<EnderecoService>();
-            Bind<IEstadoService>().To<EstadoService>();
-            Bind<ICidadeService>().To<CidadeService>();
             Bind<IVendaService>().To<VendaService>();
             Bind<ICategoriaService>().To<CategoriaService>();
 
@@ -42,8 +38,6 @@ namespace EC.Infra.CrossCutting.IoC
             Bind<IClienteRepository>().To<ClienteRepository>();
             Bind<IProdutoRepository>().To<ProdutoRepository>();
             Bind<IEnderecoRepository>().To<EnderecoRepository>();
-            Bind<IEstadoRepository>().To<EstadoRepository>();
-            Bind<ICidadeRepository>().To<CidadeRepository>();
             Bind<IVendaRepository>().To<VendaRepository>();
             Bind<ICategoriaRepository>().To<CategoriaRepository>();
 

@@ -15,29 +15,16 @@ namespace EC.Infra.Data.Repositories.ReadOnly
         {
             using (IDbConnection cn = Connection)
             {
-                var sql = @"Select * Cliente c " +
-                          "Where c.ClienteId = @sid " +
-                          "Select * From Endereco e " +
-                          "Inner join Endereco e " +
-                          "On c.EnderecoId = e.Endereco.Id " +
-                          "Inner join Cidade cd " +
-                          "On cd.CidadeId = e.CidadeId " +
-                          "Inner join Estado es " +
-                          "On es.EstadoId = e.EstadoId" +
-                          "Where e.ClienteId = @sid";
-                cn.Open();
-                var multi = cn.QueryMultiple(sql, new {sid = id});
-                var clientes = multi.Read<Cliente>();
-                var enderecos = multi.Read<Endereco, Estado, Cidade, Endereco>(
-                    (en, es, c) =>
-                    {
-                        en.EstadoId = es.EstadoId;
-                        en.CidadeId = c.CidadeId;
-                        en.Estado = es;
-                        en.Cidade = c;
+                var clienteQuery = @"Select * Cliente c " +
+                              "Where c.ClienteId = @sid ";
 
-                        return en;
-                    }, splitOn: "EnderecoId, EstadoId,CidadeId");
+                var enderecoQuery = "Select * From Endereco e " +
+                          "Where e.ClienteId = @sid";
+
+                cn.Open();
+
+                var clientes = cn.Query<Cliente>(clienteQuery, new {sid = id});
+                var enderecos = cn.Query<Endereco>(enderecoQuery, new {sid = id});
 
                 var cliente = clientes.First();
 

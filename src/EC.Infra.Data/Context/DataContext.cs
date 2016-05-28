@@ -23,8 +23,6 @@ namespace EC.Infra.Data.Context
         public IDbSet<Produto> Produtos { get; set; }
         public IDbSet<Categoria> Categorias { get; set; }
         public IDbSet<Endereco> Enderecos { get; set; }
-        public IDbSet<Cidade> Cidades { get; set; }
-        public IDbSet<Estado> Estados { get; set; }
         public IDbSet<Venda> Vendas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -49,9 +47,7 @@ namespace EC.Infra.Data.Context
 
             modelBuilder.Configurations.Add(new ClienteConfiguration());
             modelBuilder.Configurations.Add(new CategoriaConfiguration());
-            modelBuilder.Configurations.Add(new CidadeConfiguration());
             modelBuilder.Configurations.Add(new EnderecoConfiguration());
-            modelBuilder.Configurations.Add(new EstadoConfiguration());
             modelBuilder.Configurations.Add(new ProdutoConfiguration());
             modelBuilder.Configurations.Add(new VendaConfiguration());
 

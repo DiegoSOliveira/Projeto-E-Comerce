@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using EC.Domain.Entities.Clientes;
+using EC.Domain.Entities.Geografia;
 
 namespace EC.Infra.Data.EntityConfig
 {
@@ -20,7 +21,7 @@ namespace EC.Infra.Data.EntityConfig
             Property(c => c.Email)
                 .IsRequired();
 
-            //Ignore(t => t.ResultadoValidacao);
+            Ignore(t => t.ResultadoValidacao);
 
             Property(c => c.CPF)
                 .IsRequired()

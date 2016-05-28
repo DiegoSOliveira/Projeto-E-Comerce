@@ -28,17 +28,16 @@ namespace EC.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(100);
 
-            HasRequired(e => e.Estado)
-                .WithMany()
-                .HasForeignKey(e => e.EstadoId);
+            Property(e => e.Estado)
+                .IsRequired()
+                .HasMaxLength(50);
 
-            HasRequired(e => e.Cidade)
-                .WithMany()
-                .HasForeignKey(e => e.CidadeId);
+            Property(e => e.Cidade)
+                .IsRequired()
+                .HasMaxLength(100);
 
             HasRequired(e => e.Cliente)
-                .WithMany()
-                .HasForeignKey(c => c.ClienteId);
+                .WithMany(e => e.EnderecoList);
         }
     }
 }

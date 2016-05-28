@@ -17,11 +17,9 @@ namespace EC.Domain.Entities.Geografia
         public string Complemento { get; set; }
         public string Bairro { get; set; }
         public string CEP { get; set; }
-        public Guid EstadoId { get; set; }
-        public Guid CidadeId { get; set; }
+        public string Estado { get; set; }
+        public string Cidade { get; set; }
         public Guid ClienteId { get; set; }
-        public virtual Cidade Cidade { get; set; }
-        public virtual Estado Estado { get; set; }
         public virtual Cliente Cliente { get; set; }
     }
 }

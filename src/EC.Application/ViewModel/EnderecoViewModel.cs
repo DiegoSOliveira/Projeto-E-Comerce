@@ -31,19 +31,16 @@ namespace EC.Application.ViewModel
 
         [Required]
         [DisplayName("Estado")]
-        public Guid EstadoId { get; set; }
+        public string Estado { get; set; }
 
         [Required]
         [DisplayName("Cidade")]
-        public Guid CidadeId { get; set; }
+        public string Cidade { get; set; }
 
         [Required]
         public Guid ClienteId { get; set; }
 
         public virtual ClienteViewModel Cliente { get; set; }
 
-        public virtual CidadeViewModel Cidade { get; set; }
-
-        public virtual EstadoViewModel Estado { get; set; }
     }
 }

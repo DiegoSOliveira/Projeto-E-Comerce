@@ -63,16 +63,12 @@
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="CategoriaAppService.cs" />
-    <Compile Include="CidadeAppService.cs" />
     <Compile Include="ClienteAppService.cs" />
     <Compile Include="EnderecoAppService.cs" />
-    <Compile Include="EstadoAppService.cs" />
     <Compile Include="Interfaces\IAppServiceBase.cs" />
     <Compile Include="Interfaces\ICategoriaAppService.cs" />
-    <Compile Include="Interfaces\ICidadeAppService.cs" />
     <Compile Include="Interfaces\IClienteAppService.cs" />
     <Compile Include="Interfaces\IEnderecoAppService.cs" />
-    <Compile Include="Interfaces\IEstadoAppService.cs" />
     <Compile Include="Interfaces\IProdutoAppService.cs" />
     <Compile Include="Interfaces\IVendaAppService.cs" />
     <Compile Include="ProdutoAppService.cs" />
@@ -81,11 +77,9 @@
     <Compile Include="Validation\ValidationAppResult.cs" />
     <Compile Include="VendaAppService.cs" />
     <Compile Include="ViewModel\CategoriaViewModel.cs" />
-    <Compile Include="ViewModel\CidadeViewModel.cs" />
     <Compile Include="ViewModel\ClienteEnderecoViewModel.cs" />
     <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="ViewModel\EnderecoViewModel.cs" />
-    <Compile Include="ViewModel\EstadoViewModel.cs" />
     <Compile Include="ViewModel\ProdutoViewModel.cs" />
     <Compile Include="ViewModel\VendaViewModel.cs" />
   </ItemGroup>

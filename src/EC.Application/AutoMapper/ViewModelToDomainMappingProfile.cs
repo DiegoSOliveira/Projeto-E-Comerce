@@ -24,8 +24,6 @@ namespace EC.Application.AutoMapper
 
             Mapper.CreateMap<Produto, ProdutoViewModel>();
             Mapper.CreateMap<Endereco, EnderecoViewModel>();
-            Mapper.CreateMap<Estado, EstadoViewModel>();
-            Mapper.CreateMap<Cidade, CidadeViewModel>();
 
             Mapper.CreateMap<Venda, VendaViewModel>();
 
