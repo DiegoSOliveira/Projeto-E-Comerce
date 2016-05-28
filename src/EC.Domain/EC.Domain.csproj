@@ -69,8 +69,11 @@
     <Compile Include="Specification\Clientes\ClientePossuiCpfValido.cs" />
     <Compile Include="Specification\Clientes\ClientePossuiEnderecoCadastrado.cs" />
     <Compile Include="Specification\Clientes\ClientePossuiStatusAtivo.cs" />
+    <Compile Include="Specification\Clientes\ClientePossuiUmUnicoCpf.cs" />
+    <Compile Include="Specification\Clientes\ClientePossuiUmUnicoEmail.cs" />
     <Compile Include="Validation\Base\FiscalBase.cs" />
     <Compile Include="Validation\Clientes\ClienteEstaAptoParaCadastroNoSistema.cs" />
+    <Compile Include="Validation\Clientes\ClienteEstaConsistenteParaCadastro.cs" />
     <Compile Include="Validation\Documentos\CPFValidation.cs" />
     <Compile Include="Validation\Regra.cs" />
     <Compile Include="ValuesObjects\ValidationError.cs" />

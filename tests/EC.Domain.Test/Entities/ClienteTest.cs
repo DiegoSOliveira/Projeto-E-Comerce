@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EC.Domain.Entities.Clientes;
 using EC.Domain.Entities.Geografia;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -46,14 +47,17 @@ namespace EC.Domain.Test.Entities
 
             Cliente = new Cliente()
             {
-                CPF = "01109559275",
+                CPF = "01109559255",
                 Email = "cliente@cliente.com.br",
                 Ativo = false,
             };
 
-            Cliente.EnderecoList.Add(Endereco);
+            //Cliente.EnderecoList.Add(Endereco);
 
             Assert.IsFalse(Cliente.IsValid());
+            Assert.IsTrue(Cliente.ResultadoValidacao.Erros.Any(e => e.Message == "Cliente informou um CPF Inválido"));
+            Assert.IsTrue(Cliente.ResultadoValidacao.Erros.Any(e => e.Message == "Cliente não está ativo no sistema"));
+            Assert.IsTrue(Cliente.ResultadoValidacao.Erros.Any(e => e.Message == "Cliente não possui endereço cadastrado"));
         }
 
     }

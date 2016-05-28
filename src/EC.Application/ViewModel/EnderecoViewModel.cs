@@ -6,6 +6,10 @@ namespace EC.Application.ViewModel
 {
     public class EnderecoViewModel
     {
+        //public EnderecoViewModel()
+        //{
+        //    EnderecoId = Guid.NewGuid();
+        //}
         [Key]
         public Guid EnderecoId { get; set; }
 
@@ -37,9 +41,11 @@ namespace EC.Application.ViewModel
         [DisplayName("Cidade")]
         public string Cidade { get; set; }
 
+        [ScaffoldColumn(false)]
         [Required]
         public Guid ClienteId { get; set; }
 
+        [ScaffoldColumn(false)]
         public virtual ClienteViewModel Cliente { get; set; }
 
     }

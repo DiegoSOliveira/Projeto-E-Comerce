@@ -8,8 +8,8 @@ namespace EC.Domain.Interfaces.Services
 {
     public interface IClienteService : IServiceBase<Cliente>
     {
-        //Cliente ObterPorCPF(string cpf);
-        //Cliente ObterPorEmail(string email);
+        Cliente ObterPorCPF(string cpf);
+        Cliente ObterPorEmail(string email);
         ValidationResult AdicionarCliente(Cliente cliente);
         int ObterTotalRegistros(string pesquisa);
         IEnumerable<Cliente> ObterClientesGrid(int page, string pesquisa);

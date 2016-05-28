@@ -2,6 +2,7 @@
 using EC.Domain.Entities.Clientes;
 using EC.Domain.Entities.Geografia;
 using EC.Domain.Interfaces.Repository;
+using EC.Domain.Interfaces.Repository.ReadOnly;
 using EC.Domain.Validation.Clientes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
@@ -24,11 +25,11 @@ namespace EC.Domain.Test.Validations
 
             Cliente.EnderecoList.Add(new Endereco());
 
-            var stubRepo = MockRepository.GenerateMock<IClienteRepository>();
-            //stubRepo.Stub(s => s.ObterPorCPF(Cliente.CPF)).Return(null);
-            //stubRepo.Stub(s => s.ObterPorEmail(Cliente.Email)).Return(null);
+            var stubRepo = MockRepository.GenerateMock<IClienteReadOnlyRepository>();
+            stubRepo.Stub(s => s.ObterPorCpf(Cliente.CPF)).Return(null);
+            stubRepo.Stub(s => s.ObterPorEmail(Cliente.Email)).Return(null);
 
-            var cliValidation = new ClienteEstaAptoParaCadastroNoSistema();
+            var cliValidation = new ClienteEstaAptoParaCadastroNoSistema(stubRepo);
             Assert.IsTrue(cliValidation.Validar(Cliente).IsValid);
         }
 
@@ -41,17 +42,23 @@ namespace EC.Domain.Test.Validations
                 Email = "diego@diego.br"
             };
 
+            Cliente cli = new Cliente()
+            {
+                CPF = "16204166204",
+                Email = "diego.edu@diego.br"
+            };
+
             var clienteResult = Cliente;
 
-            var stubRepo = MockRepository.GenerateMock<IClienteRepository>();
-            //stubRepo.Stub(s => s.ObterPorCPF(Cliente.CPF)).Return(clienteResult);
-            //stubRepo.Stub(s => s.ObterPorEmail(Cliente.Email)).Return(clienteResult);
+            var stubRepo = MockRepository.GenerateMock<IClienteReadOnlyRepository>();
+            stubRepo.Stub(s => s.ObterPorCpf(Cliente.CPF)).Return(cli);
+            stubRepo.Stub(s => s.ObterPorEmail(Cliente.Email)).Return(cli);
 
-            var cliValidation = new ClienteEstaAptoParaCadastroNoSistema();
+            var cliValidation = new ClienteEstaAptoParaCadastroNoSistema(stubRepo);
             var result = cliValidation.Validar(Cliente);
 
             Assert.IsFalse(clienteResult.IsValid());
-            Assert.IsTrue(result.Erros.Any(e => e.Message == "CPF já cadastrado! Esqueceu sua Senha?"));
+            Assert.IsTrue(result.Erros.Any(e => e.Message == "CPF Já cadastrado! Esqueceu sua senha?"));
             Assert.IsTrue(result.Erros.Any(e => e.Message == "Email já cadastrado! Esqueceu sua senha?"));
         }
     }

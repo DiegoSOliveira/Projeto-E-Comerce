@@ -13,7 +13,6 @@ namespace EC.UI.Mvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
             AutoMapperConfig.RegisterMappings();
         }
 
@@ -22,4 +21,5 @@ namespace EC.UI.Mvc
             const string contextKey = "ContextManager.Context";
         }
     }
+
 }

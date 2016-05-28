@@ -4,6 +4,7 @@ using EC.Domain.Entities.Clientes;
 using EC.Domain.Interfaces.Repository;
 using EC.Domain.Interfaces.Repository.ReadOnly;
 using EC.Domain.Interfaces.Services;
+using EC.Domain.Validation.Clientes;
 using EC.Domain.ValuesObjects;
 
 namespace EC.Domain.Services
@@ -20,6 +21,16 @@ namespace EC.Domain.Services
             _clienteRepository = clienteRepository;
         }
 
+        public Cliente ObterPorCPF(string cpf)
+        {
+            return _clienteReadOnlyRepository.ObterPorCpf(cpf);
+        }
+
+        public Cliente ObterPorEmail(string email)
+        {
+            return _clienteReadOnlyRepository.ObterPorEmail(email);
+        }
+
         public ValidationResult AdicionarCliente(Cliente cliente)
         {
             var resultadoValidacao = new ValidationResult();
@@ -30,16 +41,23 @@ namespace EC.Domain.Services
                 return resultadoValidacao;
             }
 
+            var clienteApto = new ClienteEstaAptoParaCadastroNoSistema(_clienteReadOnlyRepository);
+            if (!cliente.ClienteApto(clienteApto))
+            {
+                resultadoValidacao.AdicionarErro(cliente.ResultadoValidacao);
+                return resultadoValidacao;
+            }
+
             base.Add(cliente);
 
             return resultadoValidacao;
         }
-        public Cliente GetById(Guid id)
+        public override Cliente GetById(Guid id)
         {
             return _clienteReadOnlyRepository.GetById(id);
         }
 
-        public IEnumerable<Cliente> GetAll()
+        public override IEnumerable<Cliente> GetAll()
         {
             return _clienteReadOnlyRepository.GetAll();
         }

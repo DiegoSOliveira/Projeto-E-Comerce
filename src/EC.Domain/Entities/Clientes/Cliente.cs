@@ -28,10 +28,16 @@ namespace EC.Domain.Entities.Clientes
 
         public bool IsValid()
         {
-            var fiscal = new ClienteEstaAptoParaCadastroNoSistema();
+            var fiscal = new ClienteEstaConsistenteParaCadastro();
 
             ResultadoValidacao = fiscal.Validar(this);
 
+            return ResultadoValidacao.IsValid;
+        }
+
+        public bool ClienteApto(ClienteEstaAptoParaCadastroNoSistema cliente)
+        {
+            ResultadoValidacao = cliente.Validar(this);
             return ResultadoValidacao.IsValid;
         }
     }

@@ -11,11 +11,45 @@ namespace EC.Infra.Data.Repositories.ReadOnly
 {
     public class ClienteReadOnlyRepository : RepositoryBaseReadOnly, IClienteReadOnlyRepository
     {
+        public Cliente ObterPorCpf(string cpf)
+        {
+            using (IDbConnection cn = Connection)
+            {
+                var query = @"Select * From Cliente c " +
+                              "Where c.CPF = @cpf";
+
+                cn.Open();
+
+                var cliente = cn.Query(query, new {cpf = cpf});
+
+                cn.Close();
+
+                return cliente.FirstOrDefault();
+            }
+        }
+
+        public Cliente ObterPorEmail(string email)
+        {
+            using (IDbConnection cn = Connection)
+            {
+                var query = @"Select * From Cliente c " +
+                              "Where c.Email = @email";
+
+                cn.Open();
+
+                var cliente = cn.Query(query, new { email = email });
+
+                cn.Close();
+
+                return cliente.FirstOrDefault();
+            }
+        }
+
         public Cliente GetById(Guid id)
         {
             using (IDbConnection cn = Connection)
             {
-                var clienteQuery = @"Select * Cliente c " +
+                var clienteQuery = @"Select * From Cliente c " +
                               "Where c.ClienteId = @sid ";
 
                 var enderecoQuery = "Select * From Endereco e " +
