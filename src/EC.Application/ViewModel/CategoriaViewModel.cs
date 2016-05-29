@@ -7,6 +7,10 @@ namespace EC.Application.ViewModel
 {
     public class CategoriaViewModel
     {
+        public CategoriaViewModel()
+        {
+            CategoriaId = Guid.NewGuid();
+        }
         [Key]
         public Guid CategoriaId { get; set; }
 

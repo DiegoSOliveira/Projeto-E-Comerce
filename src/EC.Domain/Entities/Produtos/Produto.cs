@@ -16,7 +16,7 @@ namespace EC.Domain.Entities.Produtos
         public string Nome { get; set; }
         public decimal Valor { get; set; }
         public bool Disponivel { get; set; }
-        public ICollection<Categoria> Categorias { get; set; }
+        public virtual ICollection<Categoria> Categorias { get; set; }
         public virtual ICollection<Venda> VendaList { get; set; }
     }
 }

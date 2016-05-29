@@ -15,6 +15,7 @@ namespace EC.Infra.Data.Repositories.ReadOnly
             using (IDbConnection cn = Connection)
             {
                 var query = @"Select * From Endereco e " +
+                             "Inner Join Cliente c On c.ClienteId = e.ClienteId" +
                               "Where e.ClienteId = @sid";
 
                 cn.Open();
@@ -32,15 +33,15 @@ namespace EC.Infra.Data.Repositories.ReadOnly
             using (IDbConnection cn = Connection)
             {
                 var query = @"Select * From Endereco e " +
-                              "Where e.EnderecoId = @sid";
+                             "Where e.EnderecoId = @sid";
 
                 cn.Open();
 
-                var endereco = cn.Query(query, new { sid = id });
+                var endereco = cn.Query<Endereco>(query, new { sid = id});
 
                 cn.Close();
 
-                return endereco.FirstOrDefault();
+                return endereco.First();
             }
         }
 

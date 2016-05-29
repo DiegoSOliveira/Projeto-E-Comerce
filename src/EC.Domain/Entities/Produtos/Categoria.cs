@@ -13,6 +13,6 @@ namespace EC.Domain.Entities.Produtos
 
         public Guid CategoriaId { get; set; }
         public string Nome { get; set; }
-        public ICollection<Produto> Produtos { get; set; }
+        public virtual ICollection<Produto> Produtos { get; set; }
     }
 }
