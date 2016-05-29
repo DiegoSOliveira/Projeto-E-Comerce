@@ -8,5 +8,7 @@ namespace EC.Domain.Interfaces.Repository.ReadOnly
     {
         Produto GetById(Guid id);
         IEnumerable<Produto> GetAll();
+        IEnumerable<Produto>GetByName(string nome);
+        IEnumerable<Produto>BuscarPorCategoria(string categoria);
     }
 }

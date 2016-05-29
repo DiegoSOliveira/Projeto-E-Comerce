@@ -8,5 +8,7 @@ namespace EC.Domain.Interfaces.Repository.ReadOnly
     {
         Venda GetById(Guid id);
         IEnumerable<Venda> GetAll();
+        IEnumerable<Venda> GetByCliente(Guid clienteId);
+        IEnumerable<Venda> GetVendaForDates(DateTime  DtInicio, DateTime DtFim);
     }
 }

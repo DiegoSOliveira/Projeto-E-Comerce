@@ -11,5 +11,7 @@ namespace EC.Application.Interfaces
         IEnumerable<VendaViewModel> GetAll();
         void Update(VendaViewModel vendaViewModel);
         void Remove(VendaViewModel vendaViewModel);
+        IEnumerable<VendaViewModel> GetByCliente(Guid clienteId);
+        IEnumerable<VendaViewModel> GetVendaForDates(DateTime DtInicio, DateTime DtFim);
     }
 }

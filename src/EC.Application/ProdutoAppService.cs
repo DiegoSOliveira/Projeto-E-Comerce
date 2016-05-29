@@ -23,6 +23,16 @@ namespace EC.Application
             return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoService.GetAll());
         }
 
+        public IEnumerable<ProdutoViewModel> GetByName(string nome)
+        {
+            return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoService.GetByName(nome));
+        }
+
+        public IEnumerable<ProdutoViewModel> BuscarPorCategoria(string categoria)
+        {
+            return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoService.BuscarPorCategoria(categoria));
+        }
+
         public void Add(ProdutoViewModel produtoViewModel)
         {
             var produto = Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel);

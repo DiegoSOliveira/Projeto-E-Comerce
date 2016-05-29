@@ -5,6 +5,6 @@ namespace EC.Domain.Interfaces.Repository
 {
     public interface ICategoriaRepository : IRepositoryBase<Categoria>
     {
-        //IEnumerable<Produto> ObterCategoria(string nome);
+
     }
 }

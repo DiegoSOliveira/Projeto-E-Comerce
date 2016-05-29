@@ -19,7 +19,12 @@ namespace EC.Domain.Services
 
         public IEnumerable<Produto> GetByName(string nome)
         {
-            return _produtoRepository.GetByName(nome);
+            return _produtoReadOnlyRepository.GetByName(nome);
+        }
+
+        public IEnumerable<Produto> BuscarPorCategoria(string categoria)
+        {
+            return _produtoReadOnlyRepository.BuscarPorCategoria(categoria);
         }
 
         public override IEnumerable<Produto> GetAll()

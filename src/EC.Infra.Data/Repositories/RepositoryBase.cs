@@ -54,7 +54,10 @@ namespace EC.Infra.Data.Repositories
 
         public virtual void Remove(TEntity obj)
         {
-            DbSet.Remove(obj);
+            var entry = Context.Entry(obj);
+            DbSet.Attach(obj);
+            entry.State = EntityState.Deleted;
+            //DbSet.Remove(obj);
         }
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)

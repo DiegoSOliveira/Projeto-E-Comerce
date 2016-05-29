@@ -11,5 +11,6 @@ namespace EC.Application.Interfaces
         IEnumerable<EnderecoViewModel> GetAll();
         void Update(EnderecoViewModel enderecoViewModel);
         void Remove(EnderecoViewModel enderecoViewModel);
+        IEnumerable<EnderecoViewModel> GetByCliente(Guid clienteId);
     }
 }

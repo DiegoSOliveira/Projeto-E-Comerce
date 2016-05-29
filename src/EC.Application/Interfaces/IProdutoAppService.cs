@@ -12,5 +12,7 @@ namespace EC.Application.Interfaces
         void Update(ProdutoViewModel produtoViewModel);
         void Remove(ProdutoViewModel produtoViewModel);
         IEnumerable<ProdutoViewModel> BuscarPorNome(string nome);
+        IEnumerable<ProdutoViewModel> GetByName(string nome);
+        IEnumerable<ProdutoViewModel> BuscarPorCategoria(string categoria);
     }
 }

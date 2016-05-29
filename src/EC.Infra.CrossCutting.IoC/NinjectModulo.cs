@@ -45,6 +45,8 @@ namespace EC.Infra.CrossCutting.IoC
             Bind<IClienteReadOnlyRepository>().To<ClienteReadOnlyRepository>();
             Bind<IVendaReadOnlyRepository>().To<VendaReadOnlyRepository>();
             Bind<IProdutoReadOnlyRepository>().To<ProdutoReadOnlyRepository>();
+            Bind<IEnderecoReadOnlyRepository>().To<EnderecoReadOnlyRepository>();
+            Bind<ICategoriaReadOnlyRepository>().To<CategoriaReadOnlyRepository>();
 
             // ado repos only
             //Bind<IClienteADORepository>().To<ClienteADORepository>();

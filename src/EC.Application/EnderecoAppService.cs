@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using AutoMapper;
 using EC.Application.Interfaces;
 using EC.Application.ViewModel;
 using EC.Domain.Entities.Geografia;
+using EC.Domain.Interfaces.Repository.ReadOnly;
 using EC.Domain.Interfaces.Services;
 using EC.Infra.Data.Context;
 
@@ -50,6 +52,11 @@ namespace EC.Application
             BeginTransaction();
             _enderecoService.Remove(endereco);
             Commit();
+        }
+
+        public IEnumerable<EnderecoViewModel> GetByCliente(Guid clienteId)
+        {
+            return Mapper.Map<IEnumerable<Endereco>, IEnumerable<EnderecoViewModel>>(_enderecoService.GetByCliente(clienteId));
         }
 
         public void Dispose()

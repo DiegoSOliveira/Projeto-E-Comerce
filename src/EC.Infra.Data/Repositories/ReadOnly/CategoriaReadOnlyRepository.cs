@@ -8,7 +8,7 @@ using EC.Domain.Interfaces.Repository.ReadOnly;
 
 namespace EC.Infra.Data.Repositories.ReadOnly
 {
-    public class CategoriaReadOnlyRepository : RepositoryBaseReadOnly, ICategoriaReadOnly
+    public class CategoriaReadOnlyRepository : RepositoryBaseReadOnly, ICategoriaReadOnlyRepository
     {
         public Categoria GetByName(string nome)
         {
@@ -17,7 +17,7 @@ namespace EC.Infra.Data.Repositories.ReadOnly
                 cn.Open();
 
                 var sql = @"Select * From Categoria c " +
-                          "WHERE (Nome Like '%' + @nome + '%') " +
+                          "WWhere Contains(Nome,'@nome') " +
                           "ORDER BY Nome asc";
 
 

@@ -13,5 +13,6 @@ namespace EC.Application.Interfaces
         IEnumerable<CategoriaViewModel> GetAll();
         void Update(CategoriaViewModel categoriaViewModel);
         void Remove(CategoriaViewModel categoriaViewModel);
+        Categoria GetByName(string nome);
     }
 }

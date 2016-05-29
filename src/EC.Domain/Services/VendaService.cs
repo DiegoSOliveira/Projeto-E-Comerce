@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EC.Domain.Entities.Vendas;
 using EC.Domain.Interfaces.Repository;
 using EC.Domain.Interfaces.Repository.ReadOnly;
@@ -25,5 +26,19 @@ namespace EC.Domain.Services
             return _vendaReadOnlyRepository.GetAll();
         }
 
+        public override Venda GetById(Guid id)
+        {
+            return _vendaReadOnlyRepository.GetById(id);
+        }
+
+        public IEnumerable<Venda> GetByCliente(Guid IdCliente)
+        {
+            return _vendaReadOnlyRepository.GetByCliente(IdCliente);
+        }
+
+        public IEnumerable<Venda> GetVendaForDates(DateTime DtInicio, DateTime DtFim)
+        {
+            return _vendaReadOnlyRepository.GetVendaForDates(DtInicio, DtFim);
+        }
     }
 }

@@ -6,6 +6,6 @@ namespace EC.Infra.Data.Repositories
 {
     public class EnderecoRepository : RepositoryBase<Endereco, DataContext> , IEnderecoRepository
     {
-        
+
     }
 }

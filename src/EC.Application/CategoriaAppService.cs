@@ -53,6 +53,12 @@ namespace EC.Application
             _categoriaService.Remove(categoria);
             Commit();
         }
+
+        public Categoria GetByName(string nome)
+        {
+            return _categoriaService.GetByName(nome);
+        }
+
         public void Dispose()
         {
             _categoriaService.Dispose();

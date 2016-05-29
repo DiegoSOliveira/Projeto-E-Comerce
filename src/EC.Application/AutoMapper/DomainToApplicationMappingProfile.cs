@@ -22,7 +22,7 @@ namespace EC.Application.AutoMapper
             Mapper.CreateMap<ClienteViewModel, Cliente>();
             Mapper.CreateMap<ProdutoViewModel, Produto>();
             Mapper.CreateMap<EnderecoViewModel, Endereco>();
-
+            Mapper.CreateMap<CategoriaViewModel, Categoria>();
             Mapper.CreateMap<VendaViewModel, Venda>();
         }
     }

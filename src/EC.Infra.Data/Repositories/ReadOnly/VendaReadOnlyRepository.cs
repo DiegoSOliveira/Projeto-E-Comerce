@@ -55,5 +55,39 @@ namespace EC.Infra.Data.Repositories.ReadOnly
                 return venda;
             }
         }
+
+        public IEnumerable<Venda> GetByCliente(Guid clienteId)
+        {
+            using (IDbConnection cn = Connection)
+            {
+                cn.Open();
+
+                var sql = @"Select * From Venda v " +
+                          "Where v.ClienteId = @sid";
+
+                var venda = cn.Query<Venda>(sql, new {sid = clienteId});
+
+                cn.Close();
+
+                return venda;
+            }
+        }
+
+        public IEnumerable<Venda> GetVendaForDates(DateTime DtInicio, DateTime DtFim)
+        {
+            using (IDbConnection cn = Connection)
+            {
+                cn.Open();
+
+                var sql = @"Select * From Venda v " +
+                          "Where v.DataCadastro BETWEEN @dtInicio AND @dtFim";
+
+                var venda = cn.Query<Venda>(sql, new { dtInicio = DtInicio, dtFim = DtFim });
+
+                cn.Close();
+
+                return venda;
+            }
+        }
     }
 }

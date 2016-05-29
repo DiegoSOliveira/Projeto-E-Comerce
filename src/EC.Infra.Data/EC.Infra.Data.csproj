@@ -77,6 +77,7 @@
     <Compile Include="Repositories\ProdutoRepository.cs" />
     <Compile Include="Repositories\ReadOnly\CategoriaReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ClienteReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\EnderecoReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ProdutoReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\RepositoryBaseReadOnly.cs" />
     <Compile Include="Repositories\ReadOnly\VendaReadOnlyRepository.cs" />

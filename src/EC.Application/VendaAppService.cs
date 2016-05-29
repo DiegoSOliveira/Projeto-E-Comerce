@@ -52,6 +52,16 @@ namespace EC.Application
             Commit();
         }
 
+        public IEnumerable<VendaViewModel> GetByCliente(Guid clienteId)
+        {
+            return Mapper.Map<IEnumerable<Venda>, IEnumerable<VendaViewModel>>(_vendaService.GetByCliente(clienteId));
+        }
+
+        public IEnumerable<VendaViewModel> GetVendaForDates(DateTime DtInicio, DateTime DtFim)
+        {
+            return Mapper.Map<IEnumerable<Venda>, IEnumerable<VendaViewModel>>(_vendaService.GetVendaForDates(DtInicio,DtFim));
+        }
+
         public void Dispose()
         {
             _vendaService.Dispose();

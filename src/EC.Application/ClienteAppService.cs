@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using EC.Application.Interfaces;
 using EC.Application.Validation;
@@ -64,8 +65,15 @@ namespace EC.Application
         public void Remove(ClienteViewModel clienteViewModel)
         {
             var cliente = Mapper.Map<ClienteViewModel, Cliente>(clienteViewModel);
-
+            var endereco = _enderecoService.GetByCliente(cliente.ClienteId);
             BeginTransaction();
+            if (endereco.Count() != 0)
+            {
+                foreach (var end in endereco)
+                {
+                    _enderecoService.Remove(end);
+                }
+            }
             _clienteService.Remove(cliente);
             Commit();
         }
@@ -79,8 +87,7 @@ namespace EC.Application
         public IEnumerable<ClienteViewModel> ObterClientesGrid(int page, string pesquisa)
         {
             return
-                Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteService.ObterClientesGrid(page,
-                    pesquisa));
+                Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteService.ObterClientesGrid(page,pesquisa));
         }
 
 

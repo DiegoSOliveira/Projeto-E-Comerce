@@ -21,7 +21,7 @@ namespace EC.Application.AutoMapper
 
             Mapper.CreateMap<Cliente, ClienteEnderecoViewModel>();
             Mapper.CreateMap<Endereco, ClienteEnderecoViewModel>();
-
+            Mapper.CreateMap<Categoria, CategoriaViewModel>();
             Mapper.CreateMap<Produto, ProdutoViewModel>();
             Mapper.CreateMap<Endereco, EnderecoViewModel>();
 
