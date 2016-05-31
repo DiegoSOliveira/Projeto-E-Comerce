@@ -1,1 +1,0 @@
-C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting\obj\Debug\EC.Infra.CrossCutting.IoC.csprojResolveAssemblyReference.cache

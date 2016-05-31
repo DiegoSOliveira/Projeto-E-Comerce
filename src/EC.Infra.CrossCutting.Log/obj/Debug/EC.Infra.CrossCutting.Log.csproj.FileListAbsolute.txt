@@ -1,0 +1,5 @@
+C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Log\bin\Debug\EC.Infra.CrossCutting.Log.dll
+C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Log\bin\Debug\EC.Infra.CrossCutting.Log.pdb
+C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Log\obj\Debug\EC.Infra.CrossCutting.Log.dll
+C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Log\obj\Debug\EC.Infra.CrossCutting.Log.pdb
+C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Log\obj\Debug\EC.Infra.CrossCutting.Log.csprojResolveAssemblyReference.cache
