@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using Dapper;
 using EC.Domain.Entities.Clientes;
@@ -19,24 +20,24 @@ namespace EC.Infra.Data.Repositories.ReadOnly
                 cn.Open();
 
                 var sql = @"Select * From Venda v " +
-                          "inner join VendaProdutos vp " +
-                          "on v.VendaId = vp.VendaId " +
-                          "inner join Produto p " +
-                          "on vp.ProdutoId = p.ProdutoId " +
-                          "inner join Cliente c " +
-                          "on v.ClienteId = c.ClienteId " +
+                          //"inner join VendaProdutos vp " +
+                          //"on v.VendaId = vp.VendaId " +
+                          //"inner join Produto p " +
+                          //"on vp.ProdutoId = p.ProdutoId " +
+                          //"inner join Cliente c " +
+                          //"on v.ClienteId = c.ClienteId " +
                           "Where v.VendaId = @sid";
 
+                var vendas = cn.Query<Venda>(sql, new {sid = id}).FirstOrDefault();
+                //var vendas = cn.Query<Venda, Produto, Cliente, Venda>(
+                //    sql,
+                //    (v, p, c) =>
+                //    {
+                //        v.ProdutosList.Add(p);
+                //        v.Cliente = c;
 
-                var vendas = cn.Query<Venda, Produto, Cliente, Venda>(
-                    sql,
-                    (v, p, c) =>
-                    {
-                        v.ProdutosList.Add(p);
-                        v.Cliente = c;
-
-                        return v;
-                    }, splitOn: "VendaId, ProdutoId, ClienteId").FirstOrDefault();
+                //        return v;
+                //    }, new { sid = id }, splitOn: "VendaId, ProdutoId, ClienteId").FirstOrDefault();
 
                 return vendas;
             }

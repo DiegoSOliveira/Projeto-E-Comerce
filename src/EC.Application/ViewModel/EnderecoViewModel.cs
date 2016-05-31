@@ -42,6 +42,10 @@ namespace EC.Application.ViewModel
         [DisplayName("Cidade")]
         public string Cidade { get; set; }
 
+        [Required]
+        [DisplayName("Cliente")]
+        public Guid ClienteId { get; set; }
+
         [ScaffoldColumn(false)]
         public virtual ClienteViewModel Cliente { get; set; }
 

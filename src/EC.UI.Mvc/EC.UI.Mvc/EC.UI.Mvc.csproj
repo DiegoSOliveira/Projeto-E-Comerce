@@ -173,9 +173,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EnderecosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\VendasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,6 +235,21 @@
     <Content Include="Views\Enderecos\Details.cshtml" />
     <Content Include="Views\Enderecos\Edit.cshtml" />
     <Content Include="Views\Enderecos\Index.cshtml" />
+    <Content Include="Views\Produtos\Create.cshtml" />
+    <Content Include="Views\Produtos\Delete.cshtml" />
+    <Content Include="Views\Produtos\Details.cshtml" />
+    <Content Include="Views\Produtos\Edit.cshtml" />
+    <Content Include="Views\Produtos\Index.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Vendas\Create.cshtml" />
+    <Content Include="Views\Vendas\Delete.cshtml" />
+    <Content Include="Views\Vendas\Details.cshtml" />
+    <Content Include="Views\Vendas\Edit.cshtml" />
+    <Content Include="Views\Vendas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

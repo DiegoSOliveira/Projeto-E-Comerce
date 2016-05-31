@@ -1,0 +1,9 @@
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\bin\Debug\EC.Domain.Test.dll
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\bin\Debug\EC.Domain.Test.pdb
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\bin\Debug\EC.Domain.dll
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\bin\Debug\Rhino.Mocks.dll
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\bin\Debug\EC.Domain.pdb
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\bin\Debug\Rhino.Mocks.xml
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\obj\Debug\EC.Domain.Test.csprojResolveAssemblyReference.cache
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\obj\Debug\EC.Domain.Test.dll
+C:\Projetos\Projeto E-Comerce\tests\EC.Domain.Test\obj\Debug\EC.Domain.Test.pdb

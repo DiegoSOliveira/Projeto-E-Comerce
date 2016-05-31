@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using EC.Domain.Entities.Produtos;
 using EC.Domain.Interfaces.Repository;

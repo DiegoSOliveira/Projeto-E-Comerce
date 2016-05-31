@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EC.Domain.Entities.Produtos;
 using EC.Domain.Interfaces.Repository;
 using EC.Domain.Interfaces.Repository.ReadOnly;
@@ -15,6 +16,11 @@ namespace EC.Domain.Services
         {
             _categoriaReadOnly = categoriaReadOnly;
             _categoriaRepository = categoriaRepository;
+        }
+
+        public override Categoria GetById(Guid id)
+        {
+            return _categoriaReadOnly.GetById(id);
         }
 
         public Categoria GetByName(string nome)

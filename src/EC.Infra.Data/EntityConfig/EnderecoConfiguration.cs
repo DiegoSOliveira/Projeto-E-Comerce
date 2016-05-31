@@ -37,7 +37,8 @@ namespace EC.Infra.Data.EntityConfig
                 .HasMaxLength(100);
 
             HasRequired(e => e.Cliente)
-                .WithMany(e => e.EnderecoList);
+                .WithMany(c => c.EnderecoList)
+                .HasForeignKey(e => e.ClienteId);
         }
     }
 }

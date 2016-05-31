@@ -53,7 +53,7 @@ namespace EC.Infra.Data.Repositories.ReadOnly
                               "Where c.ClienteId = @sid ";
 
                 var enderecoQuery = "Select * From Endereco e " +
-                          "Where e.ClienteId = @sid";
+                          "Where e.Cliente_ClienteId = @sid";
 
                 cn.Open();
 

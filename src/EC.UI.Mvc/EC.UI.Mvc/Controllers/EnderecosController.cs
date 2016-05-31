@@ -39,7 +39,8 @@ namespace EC.UI.Mvc.Controllers
         // GET: Enderecos/Create
         public ActionResult Create()
         {
-            ViewBag.Cliente = new SelectList(_clienteApp.GetAll(), "ClienteId", "Nome");
+            var cliente = _clienteApp.GetAll();
+            ViewBag.Cliente = cliente;
             return View();
         }
 
@@ -50,7 +51,6 @@ namespace EC.UI.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(EnderecoViewModel enderecoViewModel)
         {
-            ViewBag.Cliente = new SelectList(_clienteApp.GetAll(), "ClienteId", "Nome");
             if (ModelState.IsValid)
             {
                 _enderecoApp.Add(enderecoViewModel);

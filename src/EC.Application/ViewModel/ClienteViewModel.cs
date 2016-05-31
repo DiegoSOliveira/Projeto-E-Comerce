@@ -9,7 +9,7 @@ namespace EC.Application.ViewModel
     {
         public ClienteViewModel()
         {
-            ClienteId = Guid.NewGuid();
+            //ClienteId = Guid.NewGuid();
         }
         [Key]
         public Guid ClienteId { get; set; }
@@ -41,7 +41,7 @@ namespace EC.Application.ViewModel
         [DisplayName("Ativo?")]
         public bool Ativo { get; set; }
 
-        public IEnumerable<ProdutoViewModel> Produtos { get; set; }
-        public IEnumerable<EnderecoViewModel> Enderecos { get; set; }
+        public virtual IEnumerable<ProdutoViewModel> Produtos { get; set; }
+        public virtual IEnumerable<EnderecoViewModel> Enderecos { get; set; }
     }
 }

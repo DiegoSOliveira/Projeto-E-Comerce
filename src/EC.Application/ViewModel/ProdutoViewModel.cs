@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,6 +10,7 @@ namespace EC.Application.ViewModel
         public ProdutoViewModel()
         {
             ProdutoId = Guid.NewGuid();
+            Categorias = new List<CategoriaViewModel>();
         }
 
         [Key]
@@ -26,7 +28,8 @@ namespace EC.Application.ViewModel
 
         [DisplayName("Disponivel?")]
         public bool Disponivel { get; set; }
-        public Guid FornecedorId { get; set; }
 
+        [ScaffoldColumn(false)]
+        public virtual IEnumerable<CategoriaViewModel> Categorias { get; set; }
     }
 }

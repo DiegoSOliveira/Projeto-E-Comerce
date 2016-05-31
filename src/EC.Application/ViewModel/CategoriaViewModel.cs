@@ -10,6 +10,7 @@ namespace EC.Application.ViewModel
         public CategoriaViewModel()
         {
             CategoriaId = Guid.NewGuid();
+            Produtos = new List<ProdutoViewModel>();
         }
         [Key]
         public Guid CategoriaId { get; set; }
@@ -20,6 +21,7 @@ namespace EC.Application.ViewModel
         [DisplayName("Nome Categoria")]
         public string Nome { get; set; }
 
-        public ICollection<ProdutoViewModel> Produtos { get; set; }
+        [ScaffoldColumn(false)]
+        public virtual IEnumerable<ProdutoViewModel> Produtos { get; set; }
     }
 }

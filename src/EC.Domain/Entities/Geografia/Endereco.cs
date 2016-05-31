@@ -9,6 +9,7 @@ namespace EC.Domain.Entities.Geografia
         public Endereco()
         {
             EnderecoId = Guid.NewGuid();
+            ClienteId = Guid.NewGuid();
         }
 
         public Guid EnderecoId { get; set; }
@@ -19,6 +20,7 @@ namespace EC.Domain.Entities.Geografia
         public string CEP { get; set; }
         public string Estado { get; set; }
         public string Cidade { get; set; }
+        public Guid ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
     }
 }
