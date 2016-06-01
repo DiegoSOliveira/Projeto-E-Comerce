@@ -15,9 +15,6 @@ namespace EC.PresentationUI.Mvc.Controllers
     [ClaimsAuthorize("AdmClaims", "True")]
     public class ClaimsAdminController : Controller
     {
-        public ClaimsAdminController()
-        {
-        }
 
         public ClaimsAdminController(ApplicationUserManager userManager, IdentityContext dbContext)
         {

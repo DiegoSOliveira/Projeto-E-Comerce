@@ -2,11 +2,15 @@
 using System.Web;
 using System.Web.Mvc;
 using EC.Infra.CrossCutting.IoC;
+using EC.PresentationUI.Mvc;
 using Microsoft.Owin;
 using SimpleInjector;
 using SimpleInjector.Advanced;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
+using WebActivatorEx;
+
+[assembly: PostApplicationStartMethod(typeof(SimpleInjectorInitializer), "Initialize")]
 
 namespace EC.PresentationUI.Mvc
 {
@@ -14,7 +18,7 @@ namespace EC.PresentationUI.Mvc
     {
         public static void Initialize()
         {
-            var container = new SimpleInjector.Container();
+            var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
             // Chamada dos módulos do Simple Injector
@@ -34,12 +38,12 @@ namespace EC.PresentationUI.Mvc
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
-            container.Verify();
+            //container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
 
-        private static void InitializeContainer(SimpleInjector.Container container)
+        private static void InitializeContainer(Container container)
         {
             BootStrapper.RegisterServices(container);
         }

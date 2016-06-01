@@ -13,51 +13,23 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace EC.PresentationUI.Mvc.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller
     {
-        public RolesAdminController()
-        {
-        }
 
-        public RolesAdminController(ApplicationUserManager userManager,
-            ApplicationRoleManager roleManager)
-        {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
-
+        private readonly ApplicationRoleManager _roleManager;
         private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            set
-            {
-                _userManager = value;
-            }
-        }
 
-        private ApplicationRoleManager _roleManager;
-        public ApplicationRoleManager RoleManager
+        public RolesAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
         {
-            get
-            {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         //
         // GET: /Roles/
         public ActionResult Index()
         {
-            return View(RoleManager.Roles);
+            return View(_roleManager.Roles);
         }
 
         //
@@ -68,14 +40,14 @@ namespace EC.PresentationUI.Mvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await _roleManager.FindByIdAsync(id);
             // Get the list of Users in this Role
             var users = new List<ApplicationUser>();
 
             // Get the list of Users in this Role
-            foreach (var user in UserManager.Users.ToList())
+            foreach (var user in _userManager.Users.ToList())
             {
-                if (await UserManager.IsInRoleAsync(user.Id, role.Name))
+                if (await _userManager.IsInRoleAsync(user.Id, role.Name))
                 {
                     users.Add(user);
                 }
@@ -101,7 +73,7 @@ namespace EC.PresentationUI.Mvc.Controllers
             if (ModelState.IsValid)
             {
                 var role = new IdentityRole(roleViewModel.Name);
-                var roleresult = await RoleManager.CreateAsync(role);
+                var roleresult = await _roleManager.CreateAsync(role);
                 if (!roleresult.Succeeded)
                 {
                     ModelState.AddModelError("", roleresult.Errors.First());
@@ -120,12 +92,12 @@ namespace EC.PresentationUI.Mvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await _roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return HttpNotFound();
             }
-            RoleViewModel roleModel = new RoleViewModel { Id = role.Id, Name = role.Name };
+            var roleModel = new RoleViewModel { Id = role.Id, Name = role.Name };
             return View(roleModel);
         }
 
@@ -138,9 +110,9 @@ namespace EC.PresentationUI.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var role = await RoleManager.FindByIdAsync(roleModel.Id);
+                var role = await _roleManager.FindByIdAsync(roleModel.Id);
                 role.Name = roleModel.Name;
-                await RoleManager.UpdateAsync(role);
+                await _roleManager.UpdateAsync(role);
                 return RedirectToAction("Index");
             }
             return View();
@@ -154,7 +126,7 @@ namespace EC.PresentationUI.Mvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await _roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -174,7 +146,7 @@ namespace EC.PresentationUI.Mvc.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var role = await RoleManager.FindByIdAsync(id);
+                var role = await _roleManager.FindByIdAsync(id);
                 if (role == null)
                 {
                     return HttpNotFound();
@@ -182,11 +154,11 @@ namespace EC.PresentationUI.Mvc.Controllers
                 IdentityResult result;
                 if (deleteUser != null)
                 {
-                    result = await RoleManager.DeleteAsync(role);
+                    result = await _roleManager.DeleteAsync(role);
                 }
                 else
                 {
-                    result = await RoleManager.DeleteAsync(role);
+                    result = await _roleManager.DeleteAsync(role);
                 }
                 if (!result.Succeeded)
                 {

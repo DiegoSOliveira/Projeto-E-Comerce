@@ -15,10 +15,6 @@ namespace EC.PresentationUI.Mvc.Controllers
     [ClaimsAuthorize("AdmUsers", "True")]
     public class UsersAdminController : Controller
     {
-        public UsersAdminController()
-        {
-        }
-
         public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;

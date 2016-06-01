@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using EC.Application.AutoMapper;
+using EC.Infra.CrossCutting.IoC;
 
 namespace EC.PresentationUI.Mvc
 {

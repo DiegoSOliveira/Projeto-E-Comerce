@@ -45,7 +45,6 @@ C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.Owin.Secur
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.Web.Infrastructure.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Newtonsoft.Json.dll
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Owin.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Helpers.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Mvc.dll
@@ -60,7 +59,6 @@ C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\EC.Domain.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\AutoMapper.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.Practices.ServiceLocation.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Twilio.Api.dll
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\CommonServiceLocator.NinjectAdapter.Unofficial.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Dapper.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\EC.Application.pdb
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\EC.Infra.CrossCutting.Identity.pdb
@@ -73,7 +71,6 @@ C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.AI.Web.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.AI.WindowsServer.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.ApplicationInsights.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Helpers.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Mvc.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Optimization.xml

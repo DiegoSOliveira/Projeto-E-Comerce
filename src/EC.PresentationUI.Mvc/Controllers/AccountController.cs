@@ -15,45 +15,15 @@ namespace EC.PresentationUI.Mvc.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController()
-        {
-        }
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        // Definindo a instancia UserManager presente no request.
-        private ApplicationUserManager _userManager;
-
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        // Definindo a instancia SignInManager presente no request.
-        private ApplicationSignInManager _signInManager;
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
 
         //
         // GET: /Account/Login
@@ -76,63 +46,41 @@ namespace EC.PresentationUI.Mvc.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = await UserManager.FindAsync(model.Email, model.Password);
-                    if (!user.EmailConfirmed)
-                    {
-                        TempData["AvisoEmail"] = "Usuário não confirmado, verifique seu e-mail.";
-                    }
-                    await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Login ou Senha incorretos.");
                     return View(model);
             }
         }
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
-        {
-            var clientKey = Request.Browser.Type;
-            await UserManager.SignInClientAsync(user, clientKey);
-            // Zerando contador de logins errados.
-            await UserManager.ResetAccessFailedCountAsync(user.Id);
-
-            // Coletando Claims externos (se houver)
-            ClaimsIdentity ext = await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
-
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie, DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn
-                (
-                    new AuthenticationProperties { IsPersistent = isPersistent },
-                    // Criação da instancia do Identity e atribuição dos Claims
-                    await user.GenerateUserIdentityAsync(UserManager, ext)
-                );
-        }
 
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, string userId)
+        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Requer que o usuario já tenha feito um login por senha.
-            if (!await SignInManager.HasBeenVerifiedAsync())
+            // Require that the user has already logged in via username/password or external login
+            if (!await _signInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
-            var user = await UserManager.FindByIdAsync(await SignInManager.GetVerifiedUserIdAsync());
+            var user = await _userManager.FindByIdAsync(await _signInManager.GetVerifiedUserIdAsync());
             if (user != null)
             {
                 ViewBag.Status = "DEMO: Caso o código não chegue via " + provider + " o código é: ";
-                ViewBag.CodigoAcesso = await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
+                ViewBag.CodigoAcesso = await _userManager.GenerateTwoFactorTokenAsync(user.Id, provider);
             }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, UserId = userId });
+            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl });
         }
 
         //
@@ -147,12 +95,10 @@ namespace EC.PresentationUI.Mvc.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: false, rememberBrowser: model.RememberBrowser);
+            var result = await _signInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberBrowser, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = UserManager.FindByIdAsync(model.UserId);
-                    await SignInAsync(user.Result, false);
                     return RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -180,28 +126,22 @@ namespace EC.PresentationUI.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    Name = model.Name,
-                    Lastname = model.Lastname,
-                    Gender = model.Gender,
-                    BirthDate = model.BirthDate
-                };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+                    await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
             }
 
-            // No caso de falha, reexibir a view. 
+            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -214,7 +154,7 @@ namespace EC.PresentationUI.Mvc.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            var result = await _userManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
@@ -235,16 +175,16 @@ namespace EC.PresentationUI.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Não revelar se o usuario nao existe ou nao esta confirmado
                     return View("ForgotPasswordConfirmation");
                 }
 
-                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
+                await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
                 ViewBag.Link = callbackUrl;
                 ViewBag.Status = "DEMO: Caso o link não chegue: ";
                 ViewBag.LinkAcesso = callbackUrl;
@@ -282,13 +222,13 @@ namespace EC.PresentationUI.Mvc.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Não revelar se o usuario nao existe ou nao esta confirmado
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -312,23 +252,23 @@ namespace EC.PresentationUI.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
-            // Redirect para o provedor de login externo
+            // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
         //
         // GET: /Account/SendCode
         [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl)
+        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
-            var userId = await SignInManager.GetVerifiedUserIdAsync();
+            var userId = await _signInManager.GetVerifiedUserIdAsync();
             if (userId == null)
             {
                 return View("Error");
             }
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var userFactors = await _userManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, UserId = userId });
+            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl });
         }
 
         //
@@ -343,12 +283,12 @@ namespace EC.PresentationUI.Mvc.Controllers
                 return View();
             }
 
-            // Gerar o token e enviar
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            // Generate the token and send it
+            if (!await _signInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, userId = model.UserId });
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl});
         }
 
         //
@@ -362,33 +302,22 @@ namespace EC.PresentationUI.Mvc.Controllers
                 return RedirectToAction("Login");
             }
 
-            var user = await UserManager.FindAsync(loginInfo.Login);
-
-            // Logar caso haja um login externo e já esteja logado neste provedor de login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-
+            // Sign in the user with this external login provider if the user already has a login
+            var result = await _signInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var userext = UserManager.FindByEmailAsync(user.Email);
-                    await SignInAsync(userext.Result, false);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
                     // Se ele nao tem uma conta solicite que crie uma
-
-                    var externalIdentity = HttpContext.GetOwinContext().Authentication.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
-                    var email = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:email").Value;
-                    var firstName = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:first_name").Value;
-                    var lastName = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:last_name").Value;
-
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email, LastName = lastName, Name = firstName });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
 
@@ -413,15 +342,13 @@ namespace EC.PresentationUI.Mvc.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await _userManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        var userext = UserManager.FindByEmailAsync(model.Email);
-                        await SignInAsync(userext.Result, false);
+                        await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -436,10 +363,9 @@ namespace EC.PresentationUI.Mvc.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LogOff()
+        public ActionResult LogOff()
         {
-            await SignOutAsync();
-            //AuthenticationManager.SignOut();
+            AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
@@ -449,6 +375,26 @@ namespace EC.PresentationUI.Mvc.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_userManager != null)
+                {
+                    _userManager.Dispose();
+                    _userManager = null;
+                }
+
+                if (_signInManager != null)
+                {
+                    _signInManager.Dispose();
+                    _signInManager = null;
+                }
+            }
+
+            base.Dispose(disposing);
         }
 
         #region Helpers
@@ -509,36 +455,5 @@ namespace EC.PresentationUI.Mvc.Controllers
             }
         }
         #endregion
-
-        private async Task SignOutAsync()
-        {
-            var clientKey = Request.Browser.Type;
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            await UserManager.SignOutClientAsync(user, clientKey);
-            AuthenticationManager.SignOut();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SignOutEverywhere()
-        {
-            UserManager.UpdateSecurityStamp(User.Identity.GetUserId());
-            await SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SignOutClient(int clientId)
-        {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            var client = user.Clients.SingleOrDefault(c => c.Id == clientId);
-            if (client != null)
-            {
-                user.Clients.Remove(client);
-            }
-            UserManager.Update(user);
-            return RedirectToAction("Index", "Home");
-        }
     }
 }
