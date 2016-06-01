@@ -54,4 +54,3 @@ C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Identity\bin\Debug\Twili
 C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Identity\bin\Debug\Twilio.Api.xml
 C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Identity\obj\Debug\EC.Infra.CrossCutting.Identity.dll
 C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Identity\obj\Debug\EC.Infra.CrossCutting.Identity.pdb
-C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.Identity\obj\Debug\EC.Infra.CrossCutting.Identity.csprojResolveAssemblyReference.cache

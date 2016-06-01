@@ -6,8 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using EC.Infra.CrossCutting.Identity;
 using EC.Infra.CrossCutting.Identity.Configuration;
+using EC.Infra.CrossCutting.Identity.Model;
 using EC.Infra.CrossCutting.MvcFilters;
-using EC.PresentationUI.Mvc.ViewModels;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace EC.PresentationUI.Mvc.Controllers

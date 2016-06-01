@@ -14,12 +14,12 @@ namespace EC.Infra.CrossCutting.Identity.Configuration
                 // Utilizando TWILIO como SMS Provider.
                 // https://www.twilio.com/docs/quickstart/csharp/sms/sending-via-rest
 
-                const string accountSid = "SEU ID";
-                const string authToken = "SEU TOKEN";
+                const string accountSid = "AC335cdd8222a6588cb0ac8e2d8062aa1f";
+                const string authToken = "c1ac905a518f3a1da48ec4868a115ec8";
 
                 var client = new TwilioRestClient(accountSid, authToken);
 
-                client.SendMessage("814-350-7742", message.Destination, message.Body);
+                client.SendMessage("69-99924-8522", message.Destination, message.Body);
             }
 
             return Task.FromResult(0);

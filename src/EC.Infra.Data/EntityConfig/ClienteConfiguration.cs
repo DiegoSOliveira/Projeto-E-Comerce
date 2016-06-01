@@ -27,6 +27,7 @@ namespace EC.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(11);
 
+            ToTable("AspNetUsers");
         }
     }
 }

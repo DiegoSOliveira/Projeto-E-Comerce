@@ -1,30 +1,22 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
 using EC.Infra.CrossCutting.Identity.Configuration;
-using EC.Infra.CrossCutting.Identity.Context;
 using Microsoft.Owin.Security.DataProtection;
-using Microsoft.Owin.Security.Facebook;
 
 namespace EC.PresentationUI.Mvc
 {
     public partial class Startup
     {
-        internal static IDataProtectionProvider DataProtectionProvider { get; private set; }
-        private const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
+        public static IDataProtectionProvider DataProtectionProvider { get; set; }
 
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and role manager to use a single instance per request
-            app.CreatePerOwinContext(IdentityContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationUserManager>());
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -59,50 +51,50 @@ namespace EC.PresentationUI.Mvc
 
             // Uncomment the following lines to enable logging in with third party login providers
 
-            app.UseMicrosoftAccountAuthentication(
-                clientId: "SEU ID",
-                clientSecret: "SEU TOKEN");
+            //app.UseMicrosoftAccountAuthentication(
+            //    clientId: "SEU ID",
+            //    clientSecret: "SEU TOKEN");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "SEU ID",
-               consumerSecret: "SEU TOKEN");
-
-
-            app.UseGoogleAuthentication(
-                clientId: "SEU ID",
-                clientSecret: "SEU TOKEN");
+            //app.UseTwitterAuthentication(
+            //   consumerKey: "SEU ID",
+            //   consumerSecret: "SEU TOKEN");
 
 
-            var fao = new FacebookAuthenticationOptions
-            {
-                AppId = "SEU ID",
-                AppSecret = "SEU TOKEN"
-            };
+            //app.UseGoogleAuthentication(
+            //    clientId: "SEU ID",
+            //    clientSecret: "SEU TOKEN");
 
-            fao.Scope.Add("email");
-            fao.Scope.Add("publish_actions");
-            fao.Scope.Add("basic_info");
 
-            fao.Provider = new FacebookAuthenticationProvider()
-            {
+            //var fao = new FacebookAuthenticationOptions
+            //{
+            //    AppId = "SEU ID",
+            //    AppSecret = "SEU TOKEN"
+            //};
 
-                OnAuthenticated = (context) =>
-                {
-                    context.Identity.AddClaim(new System.Security.Claims.Claim("urn:facebook:access_token", context.AccessToken, XmlSchemaString, "Facebook"));
-                    foreach (var x in context.User)
-                    {
-                        var claimType = string.Format("urn:facebook:{0}", x.Key);
-                        string claimValue = x.Value.ToString();
-                        if (!context.Identity.HasClaim(claimType, claimValue))
-                            context.Identity.AddClaim(new System.Security.Claims.Claim(claimType, claimValue, XmlSchemaString, "Facebook"));
+            //fao.Scope.Add("email");
+            //fao.Scope.Add("publish_actions");
+            //fao.Scope.Add("basic_info");
 
-                    }
-                    return Task.FromResult(0);
-                }
-            };
+            //fao.Provider = new FacebookAuthenticationProvider()
+            //{
 
-            fao.SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie;
-            app.UseFacebookAuthentication(fao);
+            //    OnAuthenticated = (context) =>
+            //    {
+            //        context.Identity.AddClaim(new System.Security.Claims.Claim("urn:facebook:access_token", context.AccessToken, XmlSchemaString, "Facebook"));
+            //        foreach (var x in context.User)
+            //        {
+            //            var claimType = string.Format("urn:facebook:{0}", x.Key);
+            //            string claimValue = x.Value.ToString();
+            //            if (!context.Identity.HasClaim(claimType, claimValue))
+            //                context.Identity.AddClaim(new System.Security.Claims.Claim(claimType, claimValue, XmlSchemaString, "Facebook"));
+
+            //        }
+            //        return Task.FromResult(0);
+            //    }
+            //};
+
+            //fao.SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie;
+            //app.UseFacebookAuthentication(fao);
         }
     }
 }

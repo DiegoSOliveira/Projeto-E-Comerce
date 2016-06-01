@@ -32,8 +32,8 @@ namespace EC.Infra.CrossCutting.Identity.Configuration
                 msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Html));
 
                 var smtpClient = new SmtpClient("smtp.provedor.com", Convert.ToInt32(587));
-                var credentials = new NetworkCredential(ConfigurationManager.AppSettings["ContaDeEmail"],
-                    ConfigurationManager.AppSettings["SenhaEmail"]);
+                var credentials = new NetworkCredential(ConfigurationManager.AppSettings["asp.net.mvc.teste@gmail.com"],
+                ConfigurationManager.AppSettings["f99showmam"]);
                 smtpClient.Credentials = credentials;
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(msg);

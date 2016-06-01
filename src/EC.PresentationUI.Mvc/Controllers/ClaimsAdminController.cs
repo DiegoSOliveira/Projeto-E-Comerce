@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using EC.Infra.CrossCutting.Identity;
 using EC.Infra.CrossCutting.Identity.Configuration;
 using EC.Infra.CrossCutting.Identity.Context;
+using EC.Infra.CrossCutting.Identity.Model;
 using EC.Infra.CrossCutting.MvcFilters;
-using EC.PresentationUI.Mvc.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 

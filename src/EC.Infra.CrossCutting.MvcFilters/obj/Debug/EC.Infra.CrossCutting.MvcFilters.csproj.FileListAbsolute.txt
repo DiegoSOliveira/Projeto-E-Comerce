@@ -15,4 +15,3 @@ C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.MvcFilters\bin\Debug\Sys
 C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.MvcFilters\bin\Debug\System.Web.WebPages.xml
 C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.MvcFilters\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.MvcFilters\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Projetos\Projeto E-Comerce\src\EC.Infra.CrossCutting.MvcFilters\obj\Debug\EC.Infra.CrossCutting.MvcFilters.csprojResolveAssemblyReference.cache

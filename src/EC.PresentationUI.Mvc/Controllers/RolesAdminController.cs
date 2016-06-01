@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -7,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using EC.Infra.CrossCutting.Identity;
 using EC.Infra.CrossCutting.Identity.Configuration;
-using EC.PresentationUI.Mvc.ViewModels;
+using EC.Infra.CrossCutting.Identity.Model;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

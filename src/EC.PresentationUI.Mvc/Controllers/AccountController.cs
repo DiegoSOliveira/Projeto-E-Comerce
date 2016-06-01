@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EC.Infra.CrossCutting.Identity;
 using EC.Infra.CrossCutting.Identity.Configuration;
-using EC.PresentationUI.Mvc.ViewModels;
+using EC.Infra.CrossCutting.Identity.Model;
 
 namespace EC.PresentationUI.Mvc.Controllers
 {
@@ -27,6 +27,8 @@ namespace EC.PresentationUI.Mvc.Controllers
 
         // Definindo a instancia UserManager presente no request.
         private ApplicationUserManager _userManager;
+
+
         public ApplicationUserManager UserManager
         {
             get

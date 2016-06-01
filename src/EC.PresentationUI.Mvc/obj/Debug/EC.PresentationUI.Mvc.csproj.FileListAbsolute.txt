@@ -46,8 +46,6 @@ C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.Owin.Secur
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.Web.Infrastructure.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Newtonsoft.Json.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.dll
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.Web.Common.dll
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.Web.Mvc.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Owin.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Helpers.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Mvc.dll
@@ -76,8 +74,6 @@ C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.AI.Windows
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.ApplicationInsights.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.xml
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.Web.Common.xml
-C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Ninject.Web.Mvc.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Helpers.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Mvc.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\System.Web.Optimization.xml
@@ -111,3 +107,9 @@ C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Dapper.pdb
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\Dapper.xml
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\obj\Debug\EC.PresentationUI.Mvc.dll
 C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\obj\Debug\EC.PresentationUI.Mvc.pdb
+C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\SimpleInjector.dll
+C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\SimpleInjector.Integration.Web.dll
+C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\SimpleInjector.xml
+C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\SimpleInjector.Integration.Web.xml
+C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\SimpleInjector.Integration.Web.Mvc.dll
+C:\Projetos\Projeto E-Comerce\src\EC.PresentationUI.Mvc\bin\SimpleInjector.Integration.Web.Mvc.xml
