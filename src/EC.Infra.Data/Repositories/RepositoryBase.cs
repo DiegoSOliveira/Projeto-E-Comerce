@@ -10,18 +10,16 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace EC.Infra.Data.Repositories
 {
-    public class RepositoryBase<TEntity, TContext> : IRepositoryBase<TEntity>
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         where TEntity : class
-        where TContext : IDbContext, new()
     {
-        private readonly ContextManager<TContext> _contextManager = ServiceLocator.Current.GetInstance<IContextManager<TContext>>() as ContextManager<TContext>;
-
-        protected IDbSet<TEntity> DbSet;
-        protected readonly IDbContext Context;
+        protected DbSet<TEntity> DbSet;
+        protected DataContext Context;
 
         public RepositoryBase()
         {
-            Context = _contextManager.GetContext();
+            var contextManager = ServiceLocator.Current.GetInstance<IContextManager>();
+            Context = contextManager.GetContext();
             DbSet = Context.Set<TEntity>();
         }
 

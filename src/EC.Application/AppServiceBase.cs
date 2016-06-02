@@ -6,13 +6,13 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace EC.Application
 {
-    public class AppServiceBase<TContext> : IAppServiceBase<TContext> where TContext : IDbContext, new()
+    public class AppServiceBase : IAppServiceBase
     {
-        private IUnitOfWork<TContext> _uow;
+        private IUnitOfWork _uow;
 
         public virtual void BeginTransaction()
         {
-            _uow = ServiceLocator.Current.GetInstance<IUnitOfWork<TContext>>();
+            _uow = ServiceLocator.Current.GetInstance<IUnitOfWork>();
             _uow.BeginTransaction();
         }
 

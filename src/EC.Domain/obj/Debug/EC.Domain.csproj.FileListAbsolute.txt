@@ -3,3 +3,7 @@ C:\Projetos\Projeto E-Comerce\src\EC.Domain\bin\Debug\EC.Domain.pdb
 C:\Projetos\Projeto E-Comerce\src\EC.Domain\obj\Debug\EC.Domain.dll
 C:\Projetos\Projeto E-Comerce\src\EC.Domain\obj\Debug\EC.Domain.pdb
 C:\Projetos\Projeto E-Comerce\src\EC.Domain\obj\Debug\EC.Domain.csprojResolveAssemblyReference.cache
+C:\Projetos\Repositorio GIT\Projeto-E-Comerce\src\EC.Domain\bin\Debug\EC.Domain.dll
+C:\Projetos\Repositorio GIT\Projeto-E-Comerce\src\EC.Domain\bin\Debug\EC.Domain.pdb
+C:\Projetos\Repositorio GIT\Projeto-E-Comerce\src\EC.Domain\obj\Debug\EC.Domain.dll
+C:\Projetos\Repositorio GIT\Projeto-E-Comerce\src\EC.Domain\obj\Debug\EC.Domain.pdb

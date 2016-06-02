@@ -1,6 +1,6 @@
 ﻿namespace EC.Infra.Data.Interfaces
 {
-    public interface IUnitOfWork<TContext> where TContext : IDbContext, new()
+    public interface IUnitOfWork
     {
         void BeginTransaction();
         void SaveChanges();

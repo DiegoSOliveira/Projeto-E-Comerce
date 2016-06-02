@@ -10,7 +10,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Application
 {
-    public class VendaAppService : AppServiceBase<DataContext>, IVendaAppService
+    public class VendaAppService : AppServiceBase, IVendaAppService
     {
         private readonly IVendaService _vendaService;
         private readonly IVendaReadOnlyRepository _vendaReadOnly;

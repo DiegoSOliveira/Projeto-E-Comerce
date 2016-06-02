@@ -4,7 +4,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Infra.Data.Repositories
 {
-    public class ClienteRepository : RepositoryBase<Cliente, DataContext> , IClienteRepository
+    public class ClienteRepository : RepositoryBase<Cliente> , IClienteRepository
     {
 
     }

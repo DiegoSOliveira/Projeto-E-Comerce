@@ -7,7 +7,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Infra.Data.Repositories
 {
-    public class CategoriaRepository : RepositoryBase<Categoria, DataContext> , ICategoriaRepository
+    public class CategoriaRepository : RepositoryBase<Categoria> , ICategoriaRepository
     {
 
     }

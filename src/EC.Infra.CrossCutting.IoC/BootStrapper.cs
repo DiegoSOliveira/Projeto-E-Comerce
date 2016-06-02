@@ -24,46 +24,45 @@ namespace EC.Infra.CrossCutting.IoC
         {
             container.RegisterPerWebRequest<IdentityContext>();
             container.RegisterPerWebRequest<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>(new IdentityContext()));
-            container.RegisterPerWebRequest<IRoleStore<IdentityRole, string>>(() => new RoleStore<IdentityRole>());
+            container.RegisterPerWebRequest<IRoleStore<IdentityRole, string>>(() => new RoleStore<IdentityRole>(/*container.GetInstance<IdentityContext>()*/));
             container.RegisterPerWebRequest<ApplicationRoleManager>();
             container.RegisterPerWebRequest<ApplicationUserManager>();
             container.RegisterPerWebRequest<ApplicationSignInManager>();
 
             //App
-            container.Register(typeof(IAppServiceBase<>), typeof(AppServiceBase<>), Lifestyle.Scoped);
-            container.RegisterPerWebRequest<IClienteAppService, ClienteAppService>();
-            container.RegisterPerWebRequest<IEnderecoAppService, EnderecoAppService>();
-            container.RegisterPerWebRequest<IProdutoAppService, ProdutoAppService>();
-            container.RegisterPerWebRequest<ICategoriaAppService, CategoriaAppService>();
-            container.RegisterPerWebRequest<IVendaAppService, VendaAppService>();
+            container.Register(typeof(IAppServiceBase), typeof(AppServiceBase), Lifestyle.Scoped);
+            container.Register<IClienteAppService, ClienteAppService>();
+            container.Register<IEnderecoAppService, EnderecoAppService>();
+            container.Register<IProdutoAppService, ProdutoAppService>();
+            container.Register<ICategoriaAppService, CategoriaAppService>();
+            container.Register<IVendaAppService, VendaAppService>();
 
             //Service
             container.Register(typeof(IServiceBase<>), typeof(ServiceBase<>), Lifestyle.Scoped);
-            container.RegisterPerWebRequest<IClienteService, ClienteService>();
-            container.RegisterPerWebRequest<IEnderecoService, EnderecoService>();
-            container.RegisterPerWebRequest<IProdutoService, ProdutoService>();
-            container.RegisterPerWebRequest<ICategoriaService, CategoriaService>();
-            container.RegisterPerWebRequest<IVendaService, VendaService>();
+            container.Register<IClienteService, ClienteService>();
+            container.Register<IEnderecoService, EnderecoService>();
+            container.Register<IProdutoService, ProdutoService>();
+            container.Register<ICategoriaService, CategoriaService>();
+            container.Register<IVendaService, VendaService>();
 
             //Repository
-            container.Register(typeof(IRepositoryBase<>), new[] {typeof(RepositoryBase<,>).Assembly });
-            container.RegisterPerWebRequest<IClienteRepository, ClienteRepository>();
-            container.RegisterPerWebRequest<IEnderecoRepository, EnderecoRepository>();
-            container.RegisterPerWebRequest<IProdutoRepository, ProdutoRepository>();
-            container.RegisterPerWebRequest<ICategoriaRepository, CategoriaRepository>();
-            container.RegisterPerWebRequest<IVendaRepository, VendaRepository>();
+            container.Register(typeof(IRepositoryBase<>), typeof(RepositoryBase<>), Lifestyle.Scoped);
+            container.Register<IClienteRepository, ClienteRepository>();
+            container.Register<IEnderecoRepository, EnderecoRepository>();
+            container.Register<IProdutoRepository, ProdutoRepository>();
+            container.Register<ICategoriaRepository, CategoriaRepository>();
+            container.Register<IVendaRepository, VendaRepository>();
 
             //ReadOnly
-            container.RegisterPerWebRequest<IClienteReadOnlyRepository, ClienteReadOnlyRepository>();
-            container.RegisterPerWebRequest<IEnderecoReadOnlyRepository, EnderecoReadOnlyRepository>();
-            container.RegisterPerWebRequest<IProdutoReadOnlyRepository, ProdutoReadOnlyRepository>();
-            container.RegisterPerWebRequest<ICategoriaReadOnlyRepository, CategoriaReadOnlyRepository>();
-            container.RegisterPerWebRequest<IVendaReadOnlyRepository, VendaReadOnlyRepository>();
+            container.Register<IClienteReadOnlyRepository, ClienteReadOnlyRepository>();
+            container.Register<IEnderecoReadOnlyRepository, EnderecoReadOnlyRepository>();
+            container.Register<IProdutoReadOnlyRepository, ProdutoReadOnlyRepository>();
+            container.Register<ICategoriaReadOnlyRepository, CategoriaReadOnlyRepository>();
+            container.Register<IVendaReadOnlyRepository, VendaReadOnlyRepository>();
 
             //DataConfigs
-            container.Register(typeof(IContextManager<>), typeof(ContextManager<>), Lifestyle.Scoped);
-            container.RegisterPerWebRequest<IDbContext, DataContext>();
-            container.Register(typeof(IUnitOfWork<>), typeof(UnitOfWork<>), Lifestyle.Scoped);
+            container.Register(typeof(IContextManager), typeof(ContextManager), Lifestyle.Scoped);
+            container.Register(typeof(IUnitOfWork), typeof(UnitOfWork), Lifestyle.Scoped);
 
         }
     }

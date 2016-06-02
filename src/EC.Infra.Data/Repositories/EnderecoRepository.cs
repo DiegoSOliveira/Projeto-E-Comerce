@@ -4,7 +4,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Infra.Data.Repositories
 {
-    public class EnderecoRepository : RepositoryBase<Endereco, DataContext> , IEnderecoRepository
+    public class EnderecoRepository : RepositoryBase<Endereco> , IEnderecoRepository
     {
 
     }

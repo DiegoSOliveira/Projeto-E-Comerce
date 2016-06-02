@@ -11,7 +11,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Application
 {
-    public class EnderecoAppService : AppServiceBase<DataContext>, IEnderecoAppService
+    public class EnderecoAppService : AppServiceBase, IEnderecoAppService
     {
         private readonly IEnderecoService _enderecoService;
 

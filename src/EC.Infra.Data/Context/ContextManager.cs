@@ -4,17 +4,17 @@ using EC.Infra.Data.Interfaces;
 
 namespace EC.Infra.Data.Context
 {
-    public class ContextManager<TContext> : IContextManager<TContext> where TContext : IDbContext, new()
+    public class ContextManager : IContextManager
     {
         private const string ContextKey = "ContextManager.Context";
-        public IDbContext GetContext()
+        public DataContext GetContext()
         {
             if (HttpContext.Current.Items[ContextKey] == null)
             {
-                HttpContext.Current.Items[ContextKey] = new TContext();
+                HttpContext.Current.Items[ContextKey] = new DataContext();
             }
 
-            return (IDbContext)HttpContext.Current.Items[ContextKey];
+            return (DataContext)HttpContext.Current.Items[ContextKey];
         }
     }
 }

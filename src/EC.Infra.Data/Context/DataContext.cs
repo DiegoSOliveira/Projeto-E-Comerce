@@ -12,18 +12,18 @@ using EC.Infra.Data.EntityConfig;
 
 namespace EC.Infra.Data.Context
 {
-    public class DataContext : BaseDbContext
+    public class DataContext : DbContext
     {
         public DataContext() :  base("EComerceContext")
         {
 
         }
 
-        public IDbSet<Cliente> Clientes { get; set; }
-        public IDbSet<Produto> Produtos { get; set; }
-        public IDbSet<Categoria> Categorias { get; set; }
-        public IDbSet<Endereco> Enderecos { get; set; }
-        public IDbSet<Venda> Vendas { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Venda> Vendas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

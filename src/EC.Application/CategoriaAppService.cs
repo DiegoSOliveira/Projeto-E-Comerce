@@ -12,7 +12,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Application
 {
-    public class CategoriaAppService : AppServiceBase<DataContext>, ICategoriaAppService
+    public class CategoriaAppService : AppServiceBase, ICategoriaAppService
     {
         private readonly ICategoriaService _categoriaService;
         private readonly ICategoriaReadOnlyRepository _categoriaReadOnly;

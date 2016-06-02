@@ -5,18 +5,15 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace EC.Infra.Data.UoW
 {
-    public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : IDbContext, new()
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbContext _dbContext;
-
-        private readonly ContextManager<TContext> _contextManager =
-            ServiceLocator.Current.GetInstance<IContextManager<TContext>>() as ContextManager<TContext>;
-
+        private readonly DataContext _dbContext;
         private bool _disposed;
 
         public UnitOfWork()
         {
-            _dbContext = _contextManager.GetContext();
+            var contextManager = ServiceLocator.Current.GetInstance<IContextManager>();
+            _dbContext = contextManager.GetContext();
         }
 
         public void BeginTransaction()

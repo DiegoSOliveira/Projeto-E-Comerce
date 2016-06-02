@@ -9,7 +9,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Application
 {
-    public class ProdutoAppService : AppServiceBase<DataContext>, IProdutoAppService
+    public class ProdutoAppService : AppServiceBase, IProdutoAppService
     {
         private readonly IProdutoService _produtoService;
 

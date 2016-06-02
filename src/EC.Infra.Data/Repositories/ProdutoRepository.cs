@@ -5,7 +5,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Infra.Data.Repositories
 {
-    public class ProdutoRepository : RepositoryBase<Produto, DataContext> , IProdutoRepository
+    public class ProdutoRepository : RepositoryBase<Produto> , IProdutoRepository
     {
 
     }

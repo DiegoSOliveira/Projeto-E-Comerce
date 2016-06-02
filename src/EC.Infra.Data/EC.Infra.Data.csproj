@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\ContextManager.cs" />
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
@@ -67,7 +66,6 @@
     <Compile Include="EntityConfig\ProdutoConfiguration.cs" />
     <Compile Include="EntityConfig\VendaConfiguration.cs" />
     <Compile Include="Interfaces\IContextManager.cs" />
-    <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

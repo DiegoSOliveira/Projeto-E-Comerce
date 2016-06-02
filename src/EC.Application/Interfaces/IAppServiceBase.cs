@@ -2,7 +2,7 @@
 
 namespace EC.Application.Interfaces
 {
-    public interface IAppServiceBase<TContext> where TContext : IDbContext
+    public interface IAppServiceBase
     {
         void BeginTransaction();
 

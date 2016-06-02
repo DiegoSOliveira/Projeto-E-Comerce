@@ -12,7 +12,7 @@ using EC.Infra.Data.Context;
 
 namespace EC.Application
 {
-    public class ClienteAppService : AppServiceBase<DataContext>, IClienteAppService
+    public class ClienteAppService : AppServiceBase, IClienteAppService
     {
         private readonly IClienteService _clienteService;
         private readonly IEnderecoService _enderecoService;
